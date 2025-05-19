@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProjectInfo from "./components/ProjectInfo";
 
 import "./App.css";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <div>
         <h1>Web Based Messaging App</h1>
+        <ProjectInfo />
       </div>
     </>
   );
