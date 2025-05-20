@@ -4,7 +4,7 @@ function MenuBar() {
     <>
     <div className="menuBar">
       <Link to="/messaging-app">Home</Link>
-      <Link to="projectinfo">Technical Info</Link>
+      <Link to="/messaging-app/projectinfo">Technical Info</Link>
       </div>
     </>
   );

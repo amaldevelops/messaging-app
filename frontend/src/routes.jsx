@@ -13,7 +13,7 @@ const routes = [
         errorElement: <ErrorPage />,
       },
       {
-        path:"/projectinfo",
+        path:"/messaging-app/projectinfo",
         element:<ProjectInfo/>,
         errorElement:<ErrorPage/>
       }
