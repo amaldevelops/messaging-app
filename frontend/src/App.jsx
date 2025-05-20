@@ -10,8 +10,7 @@ function App() {
     <>
       <div>
         <h1>Web Based Messaging App</h1>
-        <Outlet/>
-        {/* <ProjectInfo /> */}
+        <Outlet />
       </div>
     </>
   );
