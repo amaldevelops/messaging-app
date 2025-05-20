@@ -78,7 +78,7 @@ li {
   display: flex;
   align-items: center;
   position: relative;
-  padding-left: 1.5em;
+  padding-left: 2em;
 }
 
 li::before {
@@ -88,10 +88,14 @@ li::before {
 
 .completedTick::before {
   content: "☑";
+  font-size: 1.8rem; /* ⬅️ Increase size here */
+  margin-right: 0.5em; /* Optional: add space between tick and text */
+  color: green; /* Optional: make it green */
 }
 
 .pendingEmptyCheckbox::before {
   content: "☐";
+  font-size: 1.8rem;
 }
 
 /* ☐ = empty checkbox
@@ -99,3 +103,23 @@ li::before {
 ☑ = checked checkbox
 
 ✓ = tick */
+
+.layoutContainer {
+  position: relative;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.menuBar {
+  position: fixed;
+  top: 1px;
+  left: 50%; /* Move it to the center horizontally */
+  transform: translateX(-50%); /* Nudge it back by half its width */
+  width: 80%; /* Set a specific width (e.g., 80% or 600px) */
+  z-index: 1000;
+  background: #f4f4f4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: solid #d4cccc 2px;
+  padding: 0.5rem; /* Optional: space inside the menu bar */
+  text-align: center; /* Optional: center text inside */
+}

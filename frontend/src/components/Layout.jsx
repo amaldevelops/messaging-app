@@ -3,7 +3,7 @@ import MenuBar from "./MenuBar";
 
 function Layout() {
   return (
-    <div>
+    <div className="layoutContainer">
       <div>
         <MenuBar />
       </div>
