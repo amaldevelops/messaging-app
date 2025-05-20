@@ -22,11 +22,35 @@ function ProjectInfo() {
 
       <ul>
         <li className="pendingEmptyCheckbox">
-          <span>
-            User interface Design: Decide on number of UI elements and React
-            components required{" "}
-          </span>
+          User interface Design: Decide on number of UI elements and React
+          components required
         </li>
+        <li className="pendingEmptyCheckbox">
+          Login Screen: User Name Input, Password Input, Login button which will
+          submit entered data, New User Registration Link, Demo User Login
+          Button
+        </li>
+
+        <li className="pendingEmptyCheckbox">
+          Security: Validate Password and User name with predefined criteria and
+          provide user feed back accordingly
+        </li>
+        <li className="pendingEmptyCheckbox">
+          Register screen: Full Name Input, E-Mail Input, Password Input, Retype
+          Password input, Signup button which will submit entered data, link for
+          users who have a account already
+        </li>
+
+        <li className="pendingEmptyCheckbox">
+          Logged in users screen: Users previously Contacted list which when
+          clicked will take to messaging screen, At the top search bar to search
+          other users by e-mail and then button to add them to own contact list
+        </li>
+
+        <li className="pendingEmptyCheckbox">
+          User Profile: Edit job title, edit bio
+        </li>
+        <li className="pendingEmptyCheckbox"></li>
       </ul>
 
       <h4>Backend : Database Design</h4>
