@@ -1,5 +1,6 @@
 import Layout from "./components/Layout";
 import App from "./App";
+import ProjectInfo from "./components/ProjectInfo";
 import ErrorPage from "./ErrorPage";
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
         element: <App />,
         errorElement: <ErrorPage />,
       },
+      {
+        path:"/projectinfo",
+        element:<ProjectInfo/>,
+        errorElement:<ErrorPage/>
+      }
     ],
     errorElement: <ErrorPage />,
   },

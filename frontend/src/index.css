@@ -66,3 +66,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.menuBar {
+  display: flex;
+  gap: 50px;
+  place-items: center;
+  max-width: 400px;
+}
