@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ProjectInfo from "./components/ProjectInfo";
 
+import { Outlet } from "react-router-dom";
+
 import "./App.css";
 
 function App() {
@@ -8,6 +10,7 @@ function App() {
     <>
       <div>
         <h1>Web Based Messaging App</h1>
+        <Outlet/>
         <ProjectInfo />
       </div>
     </>

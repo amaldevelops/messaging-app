@@ -1,11 +1,18 @@
+import Layout from "./components/Layout";
 import App from "./App";
 import ErrorPage from "./ErrorPage";
 
 const routes = [
   {
-    path: "/messaging-app",
-    element: <App />,
-    errorElement:<ErrorPage/>
+    element: <Layout />,
+    children: [
+      {
+        path: "/messaging-app",
+        element: <App />,
+        errorElement: <ErrorPage />,
+      },
+    ],
+    errorElement: <ErrorPage />,
   },
 ];
 
