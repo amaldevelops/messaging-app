@@ -1,23 +1,26 @@
-function ProjectInfo()
-{
-    return(
-        <div>
-            <h3>Project Technical Information</h3>
-            <h4>Core functionality</h4>
-            <ul>
-                <li>Authorization</li>
-                <li>Sending messages to another user</li>
-                <li>Customizing a user profile</li>
-            </ul>
+function ProjectInfo() {
+  return (
+    <div>
+      <h3>Project Technical Information</h3>
+      <h4>Core functionality</h4>
+      <ul>
+        <li className="completedTick">Authorization</li>
+        <li className="pendingEmptyCheckbox">
+          Sending messages to another user
+        </li>
+        <li className="pendingEmptyCheckbox">Customizing a user profile</li>
+      </ul>
 
-            <h4>Project Planning</h4>
-            <ul>
-                <li>User interface Design</li>
-                <li>Data model Design: Authentication, Users, Message Storage</li>
-                <li>Backend Design</li>
-            </ul>
-        </div>
-    )
+      <h4>Project Planning</h4>
+      <ul>
+        <li className="pendingEmptyCheckbox">User interface Design</li>
+        <li className="pendingEmptyCheckbox">
+          Data model Design: Authentication, Users, Message Storage
+        </li>
+        <li className="pendingEmptyCheckbox">Backend Design</li>
+      </ul>
+    </div>
+  );
 }
 
 export default ProjectInfo;

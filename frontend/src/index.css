@@ -73,3 +73,29 @@ button:focus-visible {
   place-items: center;
   max-width: 400px;
 }
+
+li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+li::before {
+  position: absolute;
+  left: 0;
+}
+
+.completedTick::before {
+  content: "☑";
+}
+
+.pendingEmptyCheckbox::before {
+  content: "☐";
+}
+
+/* ☐ = empty checkbox
+
+☑ = checked checkbox
+
+✓ = tick */
