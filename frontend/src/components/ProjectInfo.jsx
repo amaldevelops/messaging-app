@@ -50,13 +50,22 @@ function ProjectInfo() {
         <li className="pendingEmptyCheckbox">
           User Profile: Edit job title, edit bio
         </li>
-        <li className="pendingEmptyCheckbox"></li>
       </ul>
 
       <h4>Backend : Database Design</h4>
       <ul>
         <li className="pendingEmptyCheckbox">
           Data model Design : Authentication, Users, Message Storage
+        </li>
+
+        <li className="pendingEmptyCheckbox">
+          Users Table fields: Full Name, E-mail (This will be the main ID for
+          linking posts), Hashed Password
+        </li>
+
+        <li className="pendingEmptyCheckbox">
+          Messages Table fields: Sender ID(e-mail), Receiver ID (e-mail),
+          Message Content, Time Stamp
         </li>
       </ul>
 
@@ -69,11 +78,12 @@ function ProjectInfo() {
         <li className="pendingEmptyCheckbox">
           Sending messages to another user, decide on realtime or JSON API based{" "}
         </li>
-        <li className="pendingEmptyCheckbox">Customizing a user profile</li>
-        <li className="pendingEmptyCheckbox">Customizing a user profile</li>
+        <li className="pendingEmptyCheckbox">
+          Customizing a user profile logic
+        </li>
       </ul>
 
-      <h4>Back End : Infrastructure and Deployment</h4>
+      <h4>Cloud Infrastructure and Deployment</h4>
 
       <ul>
         <li className="pendingEmptyCheckbox">
