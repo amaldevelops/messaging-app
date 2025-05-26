@@ -1,3 +1,5 @@
+// import {userMessages} from "../prisma/PrismaQueries.js"
+
 async function apiStatus(req, res, next) {
   try {
     res.json({ status: "Backend Systems running ok" });
@@ -16,6 +18,8 @@ async function getAllContacts(req, res, next) {
 
 async function getContactMessages(req, res, next) {
   try {
+    const getUserMessages=userMessages(1);
+    console.log(getUserMessages);
     res.json({ status: "Get logged in users messages" });
   } catch (error) {
     console.error(error);
