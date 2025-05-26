@@ -15,17 +15,20 @@ datasource db {
 }
 
 model Contact {
-  id       Int       @id @default(autoincrement())
-  name     String
-  email    String    @unique
-  password String
-  bio      String
-  messages Message[]
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  bio              String
+  messagesSent     Message[] @relation("MessagesSent")
+  messagesReceived Message[] @relation("MessagesReceived")
 }
 
 model Message {
-  id        Int     @id @default(autoincrement())
-  message   String
-  contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
+  id                Int     @id @default(autoincrement())
+  message           String
+  contactSender     Contact @relation("MessagesSent", fields: [contactIdSender], references: [id])
+  contactReceiver   Contact @relation("MessagesReceived", fields: [contactIdReceiver], references: [id])
+  contactIdSender   Int
+  contactIdReceiver Int
 }

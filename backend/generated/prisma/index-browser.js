@@ -131,7 +131,8 @@ exports.Prisma.ContactScalarFieldEnum = {
 exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   message: 'message',
-  contactId: 'contactId'
+  contactIdSender: 'contactIdSender',
+  contactIdReceiver: 'contactIdReceiver'
 };
 
 exports.Prisma.SortOrder = {

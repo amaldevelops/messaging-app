@@ -48,10 +48,29 @@ async function main() {
     },
   });
 
-  const message1=await prisma.message.upsert({
-    where:
-  })
+  const message1 = await prisma.message.create({
+    data: {
+      message: "Hi Front End Developer",
+      contactSender: { connect: { id: 2 } }, // connect sender by ID
+      contactReceiver: { connect: { id: 1 } }, // connect receiver by ID
+    },
+  });
 
+  const message2 = await prisma.message.create({
+    data: {
+      message: "Hi Back End Developer",
+      contactSender: { connect: { id: 1 } }, // connect sender by ID
+      contactReceiver: { connect: { id: 2 } }, // connect receiver by ID
+    },
+  });
+
+  const message3 = await prisma.message.create({
+    data: {
+      message: "Hi Back End Developer",
+      contactSender: { connect: { id: 2 } }, // connect sender by ID
+      contactReceiver: { connect: { id: 3 } }, // connect receiver by ID
+    },
+  });
 
   console.log("Seeding Sample Data Complete...");
 }

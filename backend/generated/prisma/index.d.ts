@@ -960,11 +960,13 @@ export namespace Prisma {
    */
 
   export type ContactCountOutputType = {
-    messages: number
+    messagesSent: number
+    messagesReceived: number
   }
 
   export type ContactCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    messages?: boolean | ContactCountOutputTypeCountMessagesArgs
+    messagesSent?: boolean | ContactCountOutputTypeCountMessagesSentArgs
+    messagesReceived?: boolean | ContactCountOutputTypeCountMessagesReceivedArgs
   }
 
   // Custom InputTypes
@@ -981,7 +983,14 @@ export namespace Prisma {
   /**
    * ContactCountOutputType without action
    */
-  export type ContactCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContactCountOutputTypeCountMessagesSentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MessageWhereInput
+  }
+
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeCountMessagesReceivedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
   }
 
@@ -1188,7 +1197,8 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     bio?: boolean
-    messages?: boolean | Contact$messagesArgs<ExtArgs>
+    messagesSent?: boolean | Contact$messagesSentArgs<ExtArgs>
+    messagesReceived?: boolean | Contact$messagesReceivedArgs<ExtArgs>
     _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contact"]>
 
@@ -1218,7 +1228,8 @@ export namespace Prisma {
 
   export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "bio", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    messages?: boolean | Contact$messagesArgs<ExtArgs>
+    messagesSent?: boolean | Contact$messagesSentArgs<ExtArgs>
+    messagesReceived?: boolean | Contact$messagesReceivedArgs<ExtArgs>
     _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1227,7 +1238,8 @@ export namespace Prisma {
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
     objects: {
-      messages: Prisma.$MessagePayload<ExtArgs>[]
+      messagesSent: Prisma.$MessagePayload<ExtArgs>[]
+      messagesReceived: Prisma.$MessagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1629,7 +1641,8 @@ export namespace Prisma {
    */
   export interface Prisma__ContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    messages<T extends Contact$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Contact$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messagesSent<T extends Contact$messagesSentArgs<ExtArgs> = {}>(args?: Subset<T, Contact$messagesSentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messagesReceived<T extends Contact$messagesReceivedArgs<ExtArgs> = {}>(args?: Subset<T, Contact$messagesReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2052,9 +2065,33 @@ export namespace Prisma {
   }
 
   /**
-   * Contact.messages
+   * Contact.messagesSent
    */
-  export type Contact$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Contact$messagesSentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: MessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: MessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MessageInclude<ExtArgs> | null
+    where?: MessageWhereInput
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    cursor?: MessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * Contact.messagesReceived
+   */
+  export type Contact$messagesReceivedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Message
      */
@@ -2108,60 +2145,70 @@ export namespace Prisma {
 
   export type MessageAvgAggregateOutputType = {
     id: number | null
-    contactId: number | null
+    contactIdSender: number | null
+    contactIdReceiver: number | null
   }
 
   export type MessageSumAggregateOutputType = {
     id: number | null
-    contactId: number | null
+    contactIdSender: number | null
+    contactIdReceiver: number | null
   }
 
   export type MessageMinAggregateOutputType = {
     id: number | null
     message: string | null
-    contactId: number | null
+    contactIdSender: number | null
+    contactIdReceiver: number | null
   }
 
   export type MessageMaxAggregateOutputType = {
     id: number | null
     message: string | null
-    contactId: number | null
+    contactIdSender: number | null
+    contactIdReceiver: number | null
   }
 
   export type MessageCountAggregateOutputType = {
     id: number
     message: number
-    contactId: number
+    contactIdSender: number
+    contactIdReceiver: number
     _all: number
   }
 
 
   export type MessageAvgAggregateInputType = {
     id?: true
-    contactId?: true
+    contactIdSender?: true
+    contactIdReceiver?: true
   }
 
   export type MessageSumAggregateInputType = {
     id?: true
-    contactId?: true
+    contactIdSender?: true
+    contactIdReceiver?: true
   }
 
   export type MessageMinAggregateInputType = {
     id?: true
     message?: true
-    contactId?: true
+    contactIdSender?: true
+    contactIdReceiver?: true
   }
 
   export type MessageMaxAggregateInputType = {
     id?: true
     message?: true
-    contactId?: true
+    contactIdSender?: true
+    contactIdReceiver?: true
   }
 
   export type MessageCountAggregateInputType = {
     id?: true
     message?: true
-    contactId?: true
+    contactIdSender?: true
+    contactIdReceiver?: true
     _all?: true
   }
 
@@ -2254,7 +2301,8 @@ export namespace Prisma {
   export type MessageGroupByOutputType = {
     id: number
     message: string
-    contactId: number
+    contactIdSender: number
+    contactIdReceiver: number
     _count: MessageCountAggregateOutputType | null
     _avg: MessageAvgAggregateOutputType | null
     _sum: MessageSumAggregateOutputType | null
@@ -2279,50 +2327,62 @@ export namespace Prisma {
   export type MessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     message?: boolean
-    contactId?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactIdSender?: boolean
+    contactIdReceiver?: boolean
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     message?: boolean
-    contactId?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactIdSender?: boolean
+    contactIdReceiver?: boolean
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     message?: boolean
-    contactId?: boolean
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactIdSender?: boolean
+    contactIdReceiver?: boolean
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectScalar = {
     id?: boolean
     message?: boolean
-    contactId?: boolean
+    contactIdSender?: boolean
+    contactIdReceiver?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "contactId", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "contactIdSender" | "contactIdReceiver", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }
   export type MessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }
   export type MessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | ContactDefaultArgs<ExtArgs>
+    contactSender?: boolean | ContactDefaultArgs<ExtArgs>
+    contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }
 
   export type $MessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Message"
     objects: {
-      contact: Prisma.$ContactPayload<ExtArgs>
+      contactSender: Prisma.$ContactPayload<ExtArgs>
+      contactReceiver: Prisma.$ContactPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       message: string
-      contactId: number
+      contactIdSender: number
+      contactIdReceiver: number
     }, ExtArgs["result"]["message"]>
     composites: {}
   }
@@ -2717,7 +2777,8 @@ export namespace Prisma {
    */
   export interface Prisma__MessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    contact<T extends ContactDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContactDefaultArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contactSender<T extends ContactDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContactDefaultArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contactReceiver<T extends ContactDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContactDefaultArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2749,7 +2810,8 @@ export namespace Prisma {
   interface MessageFieldRefs {
     readonly id: FieldRef<"Message", 'Int'>
     readonly message: FieldRef<"Message", 'String'>
-    readonly contactId: FieldRef<"Message", 'Int'>
+    readonly contactIdSender: FieldRef<"Message", 'Int'>
+    readonly contactIdReceiver: FieldRef<"Message", 'Int'>
   }
     
 
@@ -3192,7 +3254,8 @@ export namespace Prisma {
   export const MessageScalarFieldEnum: {
     id: 'id',
     message: 'message',
-    contactId: 'contactId'
+    contactIdSender: 'contactIdSender',
+    contactIdReceiver: 'contactIdReceiver'
   };
 
   export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
@@ -3273,7 +3336,8 @@ export namespace Prisma {
     email?: StringFilter<"Contact"> | string
     password?: StringFilter<"Contact"> | string
     bio?: StringFilter<"Contact"> | string
-    messages?: MessageListRelationFilter
+    messagesSent?: MessageListRelationFilter
+    messagesReceived?: MessageListRelationFilter
   }
 
   export type ContactOrderByWithRelationInput = {
@@ -3282,7 +3346,8 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     bio?: SortOrder
-    messages?: MessageOrderByRelationAggregateInput
+    messagesSent?: MessageOrderByRelationAggregateInput
+    messagesReceived?: MessageOrderByRelationAggregateInput
   }
 
   export type ContactWhereUniqueInput = Prisma.AtLeast<{
@@ -3294,7 +3359,8 @@ export namespace Prisma {
     name?: StringFilter<"Contact"> | string
     password?: StringFilter<"Contact"> | string
     bio?: StringFilter<"Contact"> | string
-    messages?: MessageListRelationFilter
+    messagesSent?: MessageListRelationFilter
+    messagesReceived?: MessageListRelationFilter
   }, "id" | "email">
 
   export type ContactOrderByWithAggregationInput = {
@@ -3327,15 +3393,19 @@ export namespace Prisma {
     NOT?: MessageWhereInput | MessageWhereInput[]
     id?: IntFilter<"Message"> | number
     message?: StringFilter<"Message"> | string
-    contactId?: IntFilter<"Message"> | number
-    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
+    contactIdSender?: IntFilter<"Message"> | number
+    contactIdReceiver?: IntFilter<"Message"> | number
+    contactSender?: XOR<ContactScalarRelationFilter, ContactWhereInput>
+    contactReceiver?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }
 
   export type MessageOrderByWithRelationInput = {
     id?: SortOrder
     message?: SortOrder
-    contactId?: SortOrder
-    contact?: ContactOrderByWithRelationInput
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
+    contactSender?: ContactOrderByWithRelationInput
+    contactReceiver?: ContactOrderByWithRelationInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -3344,14 +3414,17 @@ export namespace Prisma {
     OR?: MessageWhereInput[]
     NOT?: MessageWhereInput | MessageWhereInput[]
     message?: StringFilter<"Message"> | string
-    contactId?: IntFilter<"Message"> | number
-    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>
+    contactIdSender?: IntFilter<"Message"> | number
+    contactIdReceiver?: IntFilter<"Message"> | number
+    contactSender?: XOR<ContactScalarRelationFilter, ContactWhereInput>
+    contactReceiver?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }, "id">
 
   export type MessageOrderByWithAggregationInput = {
     id?: SortOrder
     message?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
     _count?: MessageCountOrderByAggregateInput
     _avg?: MessageAvgOrderByAggregateInput
     _max?: MessageMaxOrderByAggregateInput
@@ -3365,7 +3438,8 @@ export namespace Prisma {
     NOT?: MessageScalarWhereWithAggregatesInput | MessageScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Message"> | number
     message?: StringWithAggregatesFilter<"Message"> | string
-    contactId?: IntWithAggregatesFilter<"Message"> | number
+    contactIdSender?: IntWithAggregatesFilter<"Message"> | number
+    contactIdReceiver?: IntWithAggregatesFilter<"Message"> | number
   }
 
   export type ContactCreateInput = {
@@ -3373,7 +3447,8 @@ export namespace Prisma {
     email: string
     password: string
     bio: string
-    messages?: MessageCreateNestedManyWithoutContactInput
+    messagesSent?: MessageCreateNestedManyWithoutContactSenderInput
+    messagesReceived?: MessageCreateNestedManyWithoutContactReceiverInput
   }
 
   export type ContactUncheckedCreateInput = {
@@ -3382,7 +3457,8 @@ export namespace Prisma {
     email: string
     password: string
     bio: string
-    messages?: MessageUncheckedCreateNestedManyWithoutContactInput
+    messagesSent?: MessageUncheckedCreateNestedManyWithoutContactSenderInput
+    messagesReceived?: MessageUncheckedCreateNestedManyWithoutContactReceiverInput
   }
 
   export type ContactUpdateInput = {
@@ -3390,7 +3466,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    messages?: MessageUpdateManyWithoutContactNestedInput
+    messagesSent?: MessageUpdateManyWithoutContactSenderNestedInput
+    messagesReceived?: MessageUpdateManyWithoutContactReceiverNestedInput
   }
 
   export type ContactUncheckedUpdateInput = {
@@ -3399,7 +3476,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    messages?: MessageUncheckedUpdateManyWithoutContactNestedInput
+    messagesSent?: MessageUncheckedUpdateManyWithoutContactSenderNestedInput
+    messagesReceived?: MessageUncheckedUpdateManyWithoutContactReceiverNestedInput
   }
 
   export type ContactCreateManyInput = {
@@ -3427,30 +3505,35 @@ export namespace Prisma {
 
   export type MessageCreateInput = {
     message: string
-    contact: ContactCreateNestedOneWithoutMessagesInput
+    contactSender: ContactCreateNestedOneWithoutMessagesSentInput
+    contactReceiver: ContactCreateNestedOneWithoutMessagesReceivedInput
   }
 
   export type MessageUncheckedCreateInput = {
     id?: number
     message: string
-    contactId: number
+    contactIdSender: number
+    contactIdReceiver: number
   }
 
   export type MessageUpdateInput = {
     message?: StringFieldUpdateOperationsInput | string
-    contact?: ContactUpdateOneRequiredWithoutMessagesNestedInput
+    contactSender?: ContactUpdateOneRequiredWithoutMessagesSentNestedInput
+    contactReceiver?: ContactUpdateOneRequiredWithoutMessagesReceivedNestedInput
   }
 
   export type MessageUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
-    contactId?: IntFieldUpdateOperationsInput | number
+    contactIdSender?: IntFieldUpdateOperationsInput | number
+    contactIdReceiver?: IntFieldUpdateOperationsInput | number
   }
 
   export type MessageCreateManyInput = {
     id?: number
     message: string
-    contactId: number
+    contactIdSender: number
+    contactIdReceiver: number
   }
 
   export type MessageUpdateManyMutationInput = {
@@ -3460,7 +3543,8 @@ export namespace Prisma {
   export type MessageUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
-    contactId?: IntFieldUpdateOperationsInput | number
+    contactIdSender?: IntFieldUpdateOperationsInput | number
+    contactIdReceiver?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3573,42 +3657,61 @@ export namespace Prisma {
   export type MessageCountOrderByAggregateInput = {
     id?: SortOrder
     message?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
   }
 
   export type MessageAvgOrderByAggregateInput = {
     id?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
   }
 
   export type MessageMaxOrderByAggregateInput = {
     id?: SortOrder
     message?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
   }
 
   export type MessageMinOrderByAggregateInput = {
     id?: SortOrder
     message?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
   }
 
   export type MessageSumOrderByAggregateInput = {
     id?: SortOrder
-    contactId?: SortOrder
+    contactIdSender?: SortOrder
+    contactIdReceiver?: SortOrder
   }
 
-  export type MessageCreateNestedManyWithoutContactInput = {
-    create?: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput> | MessageCreateWithoutContactInput[] | MessageUncheckedCreateWithoutContactInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutContactInput | MessageCreateOrConnectWithoutContactInput[]
-    createMany?: MessageCreateManyContactInputEnvelope
+  export type MessageCreateNestedManyWithoutContactSenderInput = {
+    create?: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput> | MessageCreateWithoutContactSenderInput[] | MessageUncheckedCreateWithoutContactSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactSenderInput | MessageCreateOrConnectWithoutContactSenderInput[]
+    createMany?: MessageCreateManyContactSenderInputEnvelope
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
-  export type MessageUncheckedCreateNestedManyWithoutContactInput = {
-    create?: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput> | MessageCreateWithoutContactInput[] | MessageUncheckedCreateWithoutContactInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutContactInput | MessageCreateOrConnectWithoutContactInput[]
-    createMany?: MessageCreateManyContactInputEnvelope
+  export type MessageCreateNestedManyWithoutContactReceiverInput = {
+    create?: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput> | MessageCreateWithoutContactReceiverInput[] | MessageUncheckedCreateWithoutContactReceiverInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactReceiverInput | MessageCreateOrConnectWithoutContactReceiverInput[]
+    createMany?: MessageCreateManyContactReceiverInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type MessageUncheckedCreateNestedManyWithoutContactSenderInput = {
+    create?: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput> | MessageCreateWithoutContactSenderInput[] | MessageUncheckedCreateWithoutContactSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactSenderInput | MessageCreateOrConnectWithoutContactSenderInput[]
+    createMany?: MessageCreateManyContactSenderInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type MessageUncheckedCreateNestedManyWithoutContactReceiverInput = {
+    create?: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput> | MessageCreateWithoutContactReceiverInput[] | MessageUncheckedCreateWithoutContactReceiverInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactReceiverInput | MessageCreateOrConnectWithoutContactReceiverInput[]
+    createMany?: MessageCreateManyContactReceiverInputEnvelope
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
@@ -3616,17 +3719,31 @@ export namespace Prisma {
     set?: string
   }
 
-  export type MessageUpdateManyWithoutContactNestedInput = {
-    create?: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput> | MessageCreateWithoutContactInput[] | MessageUncheckedCreateWithoutContactInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutContactInput | MessageCreateOrConnectWithoutContactInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutContactInput | MessageUpsertWithWhereUniqueWithoutContactInput[]
-    createMany?: MessageCreateManyContactInputEnvelope
+  export type MessageUpdateManyWithoutContactSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput> | MessageCreateWithoutContactSenderInput[] | MessageUncheckedCreateWithoutContactSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactSenderInput | MessageCreateOrConnectWithoutContactSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutContactSenderInput | MessageUpsertWithWhereUniqueWithoutContactSenderInput[]
+    createMany?: MessageCreateManyContactSenderInputEnvelope
     set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutContactInput | MessageUpdateWithWhereUniqueWithoutContactInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutContactInput | MessageUpdateManyWithWhereWithoutContactInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutContactSenderInput | MessageUpdateWithWhereUniqueWithoutContactSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutContactSenderInput | MessageUpdateManyWithWhereWithoutContactSenderInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type MessageUpdateManyWithoutContactReceiverNestedInput = {
+    create?: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput> | MessageCreateWithoutContactReceiverInput[] | MessageUncheckedCreateWithoutContactReceiverInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactReceiverInput | MessageCreateOrConnectWithoutContactReceiverInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutContactReceiverInput | MessageUpsertWithWhereUniqueWithoutContactReceiverInput[]
+    createMany?: MessageCreateManyContactReceiverInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutContactReceiverInput | MessageUpdateWithWhereUniqueWithoutContactReceiverInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutContactReceiverInput | MessageUpdateManyWithWhereWithoutContactReceiverInput[]
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
@@ -3638,32 +3755,60 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type MessageUncheckedUpdateManyWithoutContactNestedInput = {
-    create?: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput> | MessageCreateWithoutContactInput[] | MessageUncheckedCreateWithoutContactInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutContactInput | MessageCreateOrConnectWithoutContactInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutContactInput | MessageUpsertWithWhereUniqueWithoutContactInput[]
-    createMany?: MessageCreateManyContactInputEnvelope
+  export type MessageUncheckedUpdateManyWithoutContactSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput> | MessageCreateWithoutContactSenderInput[] | MessageUncheckedCreateWithoutContactSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactSenderInput | MessageCreateOrConnectWithoutContactSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutContactSenderInput | MessageUpsertWithWhereUniqueWithoutContactSenderInput[]
+    createMany?: MessageCreateManyContactSenderInputEnvelope
     set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutContactInput | MessageUpdateWithWhereUniqueWithoutContactInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutContactInput | MessageUpdateManyWithWhereWithoutContactInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutContactSenderInput | MessageUpdateWithWhereUniqueWithoutContactSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutContactSenderInput | MessageUpdateManyWithWhereWithoutContactSenderInput[]
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type ContactCreateNestedOneWithoutMessagesInput = {
-    create?: XOR<ContactCreateWithoutMessagesInput, ContactUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: ContactCreateOrConnectWithoutMessagesInput
+  export type MessageUncheckedUpdateManyWithoutContactReceiverNestedInput = {
+    create?: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput> | MessageCreateWithoutContactReceiverInput[] | MessageUncheckedCreateWithoutContactReceiverInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutContactReceiverInput | MessageCreateOrConnectWithoutContactReceiverInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutContactReceiverInput | MessageUpsertWithWhereUniqueWithoutContactReceiverInput[]
+    createMany?: MessageCreateManyContactReceiverInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutContactReceiverInput | MessageUpdateWithWhereUniqueWithoutContactReceiverInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutContactReceiverInput | MessageUpdateManyWithWhereWithoutContactReceiverInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type ContactCreateNestedOneWithoutMessagesSentInput = {
+    create?: XOR<ContactCreateWithoutMessagesSentInput, ContactUncheckedCreateWithoutMessagesSentInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutMessagesSentInput
     connect?: ContactWhereUniqueInput
   }
 
-  export type ContactUpdateOneRequiredWithoutMessagesNestedInput = {
-    create?: XOR<ContactCreateWithoutMessagesInput, ContactUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: ContactCreateOrConnectWithoutMessagesInput
-    upsert?: ContactUpsertWithoutMessagesInput
+  export type ContactCreateNestedOneWithoutMessagesReceivedInput = {
+    create?: XOR<ContactCreateWithoutMessagesReceivedInput, ContactUncheckedCreateWithoutMessagesReceivedInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutMessagesReceivedInput
     connect?: ContactWhereUniqueInput
-    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutMessagesInput, ContactUpdateWithoutMessagesInput>, ContactUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type ContactUpdateOneRequiredWithoutMessagesSentNestedInput = {
+    create?: XOR<ContactCreateWithoutMessagesSentInput, ContactUncheckedCreateWithoutMessagesSentInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutMessagesSentInput
+    upsert?: ContactUpsertWithoutMessagesSentInput
+    connect?: ContactWhereUniqueInput
+    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutMessagesSentInput, ContactUpdateWithoutMessagesSentInput>, ContactUncheckedUpdateWithoutMessagesSentInput>
+  }
+
+  export type ContactUpdateOneRequiredWithoutMessagesReceivedNestedInput = {
+    create?: XOR<ContactCreateWithoutMessagesReceivedInput, ContactUncheckedCreateWithoutMessagesReceivedInput>
+    connectOrCreate?: ContactCreateOrConnectWithoutMessagesReceivedInput
+    upsert?: ContactUpsertWithoutMessagesReceivedInput
+    connect?: ContactWhereUniqueInput
+    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutMessagesReceivedInput, ContactUpdateWithoutMessagesReceivedInput>, ContactUncheckedUpdateWithoutMessagesReceivedInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3735,39 +3880,62 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type MessageCreateWithoutContactInput = {
+  export type MessageCreateWithoutContactSenderInput = {
     message: string
+    contactReceiver: ContactCreateNestedOneWithoutMessagesReceivedInput
   }
 
-  export type MessageUncheckedCreateWithoutContactInput = {
+  export type MessageUncheckedCreateWithoutContactSenderInput = {
     id?: number
     message: string
+    contactIdReceiver: number
   }
 
-  export type MessageCreateOrConnectWithoutContactInput = {
+  export type MessageCreateOrConnectWithoutContactSenderInput = {
     where: MessageWhereUniqueInput
-    create: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput>
+    create: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput>
   }
 
-  export type MessageCreateManyContactInputEnvelope = {
-    data: MessageCreateManyContactInput | MessageCreateManyContactInput[]
+  export type MessageCreateManyContactSenderInputEnvelope = {
+    data: MessageCreateManyContactSenderInput | MessageCreateManyContactSenderInput[]
     skipDuplicates?: boolean
   }
 
-  export type MessageUpsertWithWhereUniqueWithoutContactInput = {
-    where: MessageWhereUniqueInput
-    update: XOR<MessageUpdateWithoutContactInput, MessageUncheckedUpdateWithoutContactInput>
-    create: XOR<MessageCreateWithoutContactInput, MessageUncheckedCreateWithoutContactInput>
+  export type MessageCreateWithoutContactReceiverInput = {
+    message: string
+    contactSender: ContactCreateNestedOneWithoutMessagesSentInput
   }
 
-  export type MessageUpdateWithWhereUniqueWithoutContactInput = {
-    where: MessageWhereUniqueInput
-    data: XOR<MessageUpdateWithoutContactInput, MessageUncheckedUpdateWithoutContactInput>
+  export type MessageUncheckedCreateWithoutContactReceiverInput = {
+    id?: number
+    message: string
+    contactIdSender: number
   }
 
-  export type MessageUpdateManyWithWhereWithoutContactInput = {
+  export type MessageCreateOrConnectWithoutContactReceiverInput = {
+    where: MessageWhereUniqueInput
+    create: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput>
+  }
+
+  export type MessageCreateManyContactReceiverInputEnvelope = {
+    data: MessageCreateManyContactReceiverInput | MessageCreateManyContactReceiverInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MessageUpsertWithWhereUniqueWithoutContactSenderInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutContactSenderInput, MessageUncheckedUpdateWithoutContactSenderInput>
+    create: XOR<MessageCreateWithoutContactSenderInput, MessageUncheckedCreateWithoutContactSenderInput>
+  }
+
+  export type MessageUpdateWithWhereUniqueWithoutContactSenderInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutContactSenderInput, MessageUncheckedUpdateWithoutContactSenderInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutContactSenderInput = {
     where: MessageScalarWhereInput
-    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutContactInput>
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutContactSenderInput>
   }
 
   export type MessageScalarWhereInput = {
@@ -3776,72 +3944,170 @@ export namespace Prisma {
     NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
     id?: IntFilter<"Message"> | number
     message?: StringFilter<"Message"> | string
-    contactId?: IntFilter<"Message"> | number
+    contactIdSender?: IntFilter<"Message"> | number
+    contactIdReceiver?: IntFilter<"Message"> | number
   }
 
-  export type ContactCreateWithoutMessagesInput = {
+  export type MessageUpsertWithWhereUniqueWithoutContactReceiverInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutContactReceiverInput, MessageUncheckedUpdateWithoutContactReceiverInput>
+    create: XOR<MessageCreateWithoutContactReceiverInput, MessageUncheckedCreateWithoutContactReceiverInput>
+  }
+
+  export type MessageUpdateWithWhereUniqueWithoutContactReceiverInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutContactReceiverInput, MessageUncheckedUpdateWithoutContactReceiverInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutContactReceiverInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutContactReceiverInput>
+  }
+
+  export type ContactCreateWithoutMessagesSentInput = {
     name: string
     email: string
     password: string
     bio: string
+    messagesReceived?: MessageCreateNestedManyWithoutContactReceiverInput
   }
 
-  export type ContactUncheckedCreateWithoutMessagesInput = {
+  export type ContactUncheckedCreateWithoutMessagesSentInput = {
     id?: number
     name: string
     email: string
     password: string
     bio: string
+    messagesReceived?: MessageUncheckedCreateNestedManyWithoutContactReceiverInput
   }
 
-  export type ContactCreateOrConnectWithoutMessagesInput = {
+  export type ContactCreateOrConnectWithoutMessagesSentInput = {
     where: ContactWhereUniqueInput
-    create: XOR<ContactCreateWithoutMessagesInput, ContactUncheckedCreateWithoutMessagesInput>
+    create: XOR<ContactCreateWithoutMessagesSentInput, ContactUncheckedCreateWithoutMessagesSentInput>
   }
 
-  export type ContactUpsertWithoutMessagesInput = {
-    update: XOR<ContactUpdateWithoutMessagesInput, ContactUncheckedUpdateWithoutMessagesInput>
-    create: XOR<ContactCreateWithoutMessagesInput, ContactUncheckedCreateWithoutMessagesInput>
+  export type ContactCreateWithoutMessagesReceivedInput = {
+    name: string
+    email: string
+    password: string
+    bio: string
+    messagesSent?: MessageCreateNestedManyWithoutContactSenderInput
+  }
+
+  export type ContactUncheckedCreateWithoutMessagesReceivedInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    bio: string
+    messagesSent?: MessageUncheckedCreateNestedManyWithoutContactSenderInput
+  }
+
+  export type ContactCreateOrConnectWithoutMessagesReceivedInput = {
+    where: ContactWhereUniqueInput
+    create: XOR<ContactCreateWithoutMessagesReceivedInput, ContactUncheckedCreateWithoutMessagesReceivedInput>
+  }
+
+  export type ContactUpsertWithoutMessagesSentInput = {
+    update: XOR<ContactUpdateWithoutMessagesSentInput, ContactUncheckedUpdateWithoutMessagesSentInput>
+    create: XOR<ContactCreateWithoutMessagesSentInput, ContactUncheckedCreateWithoutMessagesSentInput>
     where?: ContactWhereInput
   }
 
-  export type ContactUpdateToOneWithWhereWithoutMessagesInput = {
+  export type ContactUpdateToOneWithWhereWithoutMessagesSentInput = {
     where?: ContactWhereInput
-    data: XOR<ContactUpdateWithoutMessagesInput, ContactUncheckedUpdateWithoutMessagesInput>
+    data: XOR<ContactUpdateWithoutMessagesSentInput, ContactUncheckedUpdateWithoutMessagesSentInput>
   }
 
-  export type ContactUpdateWithoutMessagesInput = {
+  export type ContactUpdateWithoutMessagesSentInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
+    messagesReceived?: MessageUpdateManyWithoutContactReceiverNestedInput
   }
 
-  export type ContactUncheckedUpdateWithoutMessagesInput = {
+  export type ContactUncheckedUpdateWithoutMessagesSentInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
+    messagesReceived?: MessageUncheckedUpdateManyWithoutContactReceiverNestedInput
   }
 
-  export type MessageCreateManyContactInput = {
+  export type ContactUpsertWithoutMessagesReceivedInput = {
+    update: XOR<ContactUpdateWithoutMessagesReceivedInput, ContactUncheckedUpdateWithoutMessagesReceivedInput>
+    create: XOR<ContactCreateWithoutMessagesReceivedInput, ContactUncheckedCreateWithoutMessagesReceivedInput>
+    where?: ContactWhereInput
+  }
+
+  export type ContactUpdateToOneWithWhereWithoutMessagesReceivedInput = {
+    where?: ContactWhereInput
+    data: XOR<ContactUpdateWithoutMessagesReceivedInput, ContactUncheckedUpdateWithoutMessagesReceivedInput>
+  }
+
+  export type ContactUpdateWithoutMessagesReceivedInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    messagesSent?: MessageUpdateManyWithoutContactSenderNestedInput
+  }
+
+  export type ContactUncheckedUpdateWithoutMessagesReceivedInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    messagesSent?: MessageUncheckedUpdateManyWithoutContactSenderNestedInput
+  }
+
+  export type MessageCreateManyContactSenderInput = {
     id?: number
     message: string
+    contactIdReceiver: number
   }
 
-  export type MessageUpdateWithoutContactInput = {
+  export type MessageCreateManyContactReceiverInput = {
+    id?: number
+    message: string
+    contactIdSender: number
+  }
+
+  export type MessageUpdateWithoutContactSenderInput = {
     message?: StringFieldUpdateOperationsInput | string
+    contactReceiver?: ContactUpdateOneRequiredWithoutMessagesReceivedNestedInput
   }
 
-  export type MessageUncheckedUpdateWithoutContactInput = {
+  export type MessageUncheckedUpdateWithoutContactSenderInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
+    contactIdReceiver?: IntFieldUpdateOperationsInput | number
   }
 
-  export type MessageUncheckedUpdateManyWithoutContactInput = {
+  export type MessageUncheckedUpdateManyWithoutContactSenderInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
+    contactIdReceiver?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MessageUpdateWithoutContactReceiverInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    contactSender?: ContactUpdateOneRequiredWithoutMessagesSentNestedInput
+  }
+
+  export type MessageUncheckedUpdateWithoutContactReceiverInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    contactIdSender?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MessageUncheckedUpdateManyWithoutContactReceiverInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    contactIdSender?: IntFieldUpdateOperationsInput | number
   }
 
 
