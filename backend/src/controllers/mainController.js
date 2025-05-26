@@ -18,7 +18,7 @@ async function getAllContacts(req, res, next) {
 
 async function getContactMessages(req, res, next) {
   try {
-    const getUserMessages=userMessages(1);
+    const getUserMessages=await userMessages(1);
     console.log(getUserMessages);
     res.json({ status: "Get logged in users messages" });
   } catch (error) {
