@@ -20,7 +20,7 @@ async function getContactMessages(req, res, next) {
   try {
     const getUserMessages=await userMessages(1);
     console.log(getUserMessages);
-    res.json({ status: "Get logged in users messages" });
+    res.json({ status: "Get logged in users messages",getUserMessages });
   } catch (error) {
     console.error(error);
   }

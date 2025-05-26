@@ -31,4 +31,5 @@ model Message {
   contactReceiver   Contact @relation("MessagesReceived", fields: [contactIdReceiver], references: [id])
   contactIdSender   Int
   contactIdReceiver Int
+
 }
