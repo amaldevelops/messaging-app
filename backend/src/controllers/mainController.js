@@ -1,4 +1,4 @@
-// import {userMessages} from "../prisma/PrismaQueries.js"
+import {userMessages} from "../prisma/PrismaQueries.js"
 
 async function apiStatus(req, res, next) {
   try {
