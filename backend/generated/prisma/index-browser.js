@@ -124,6 +124,7 @@ exports.Prisma.ContactScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  password: 'password',
   bio: 'bio'
 };
 

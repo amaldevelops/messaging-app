@@ -1014,6 +1014,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     email: string | null
+    password: string | null
     bio: string | null
   }
 
@@ -1021,6 +1022,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     email: string | null
+    password: string | null
     bio: string | null
   }
 
@@ -1028,6 +1030,7 @@ export namespace Prisma {
     id: number
     name: number
     email: number
+    password: number
     bio: number
     _all: number
   }
@@ -1045,6 +1048,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    password?: true
     bio?: true
   }
 
@@ -1052,6 +1056,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    password?: true
     bio?: true
   }
 
@@ -1059,6 +1064,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    password?: true
     bio?: true
     _all?: true
   }
@@ -1153,6 +1159,7 @@ export namespace Prisma {
     id: number
     name: string
     email: string
+    password: string
     bio: string
     _count: ContactCountAggregateOutputType | null
     _avg: ContactAvgAggregateOutputType | null
@@ -1179,6 +1186,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    password?: boolean
     bio?: boolean
     messages?: boolean | Contact$messagesArgs<ExtArgs>
     _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
@@ -1188,6 +1196,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    password?: boolean
     bio?: boolean
   }, ExtArgs["result"]["contact"]>
 
@@ -1195,6 +1204,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    password?: boolean
     bio?: boolean
   }, ExtArgs["result"]["contact"]>
 
@@ -1202,10 +1212,11 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    password?: boolean
     bio?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "bio", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "bio", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messages?: boolean | Contact$messagesArgs<ExtArgs>
     _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>
@@ -1222,6 +1233,7 @@ export namespace Prisma {
       id: number
       name: string
       email: string
+      password: string
       bio: string
     }, ExtArgs["result"]["contact"]>
     composites: {}
@@ -1650,6 +1662,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Contact", 'Int'>
     readonly name: FieldRef<"Contact", 'String'>
     readonly email: FieldRef<"Contact", 'String'>
+    readonly password: FieldRef<"Contact", 'String'>
     readonly bio: FieldRef<"Contact", 'String'>
   }
     
@@ -3169,6 +3182,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
+    password: 'password',
     bio: 'bio'
   };
 
@@ -3257,6 +3271,7 @@ export namespace Prisma {
     id?: IntFilter<"Contact"> | number
     name?: StringFilter<"Contact"> | string
     email?: StringFilter<"Contact"> | string
+    password?: StringFilter<"Contact"> | string
     bio?: StringFilter<"Contact"> | string
     messages?: MessageListRelationFilter
   }
@@ -3265,6 +3280,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    password?: SortOrder
     bio?: SortOrder
     messages?: MessageOrderByRelationAggregateInput
   }
@@ -3276,6 +3292,7 @@ export namespace Prisma {
     OR?: ContactWhereInput[]
     NOT?: ContactWhereInput | ContactWhereInput[]
     name?: StringFilter<"Contact"> | string
+    password?: StringFilter<"Contact"> | string
     bio?: StringFilter<"Contact"> | string
     messages?: MessageListRelationFilter
   }, "id" | "email">
@@ -3284,6 +3301,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    password?: SortOrder
     bio?: SortOrder
     _count?: ContactCountOrderByAggregateInput
     _avg?: ContactAvgOrderByAggregateInput
@@ -3299,6 +3317,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Contact"> | number
     name?: StringWithAggregatesFilter<"Contact"> | string
     email?: StringWithAggregatesFilter<"Contact"> | string
+    password?: StringWithAggregatesFilter<"Contact"> | string
     bio?: StringWithAggregatesFilter<"Contact"> | string
   }
 
@@ -3352,6 +3371,7 @@ export namespace Prisma {
   export type ContactCreateInput = {
     name: string
     email: string
+    password: string
     bio: string
     messages?: MessageCreateNestedManyWithoutContactInput
   }
@@ -3360,6 +3380,7 @@ export namespace Prisma {
     id?: number
     name: string
     email: string
+    password: string
     bio: string
     messages?: MessageUncheckedCreateNestedManyWithoutContactInput
   }
@@ -3367,6 +3388,7 @@ export namespace Prisma {
   export type ContactUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     messages?: MessageUpdateManyWithoutContactNestedInput
   }
@@ -3375,6 +3397,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     messages?: MessageUncheckedUpdateManyWithoutContactNestedInput
   }
@@ -3383,12 +3406,14 @@ export namespace Prisma {
     id?: number
     name: string
     email: string
+    password: string
     bio: string
   }
 
   export type ContactUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3396,6 +3421,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3477,6 +3503,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    password?: SortOrder
     bio?: SortOrder
   }
 
@@ -3488,6 +3515,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    password?: SortOrder
     bio?: SortOrder
   }
 
@@ -3495,6 +3523,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    password?: SortOrder
     bio?: SortOrder
   }
 
@@ -3753,6 +3782,7 @@ export namespace Prisma {
   export type ContactCreateWithoutMessagesInput = {
     name: string
     email: string
+    password: string
     bio: string
   }
 
@@ -3760,6 +3790,7 @@ export namespace Prisma {
     id?: number
     name: string
     email: string
+    password: string
     bio: string
   }
 
@@ -3782,6 +3813,7 @@ export namespace Prisma {
   export type ContactUpdateWithoutMessagesInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3789,6 +3821,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
   }
 
