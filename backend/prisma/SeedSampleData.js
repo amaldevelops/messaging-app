@@ -66,7 +66,7 @@ async function main() {
 
   const message3 = await prisma.message.create({
     data: {
-      message: "Hi Back End Developer",
+      message: "Hi Full Stack Developer",
       contactSender: { connect: { id: 2 } }, // connect sender by ID
       contactReceiver: { connect: { id: 3 } }, // connect receiver by ID
     },
