@@ -2160,6 +2160,7 @@ export namespace Prisma {
     message: string | null
     contactIdSender: number | null
     contactIdReceiver: number | null
+    time: Date | null
   }
 
   export type MessageMaxAggregateOutputType = {
@@ -2167,6 +2168,7 @@ export namespace Prisma {
     message: string | null
     contactIdSender: number | null
     contactIdReceiver: number | null
+    time: Date | null
   }
 
   export type MessageCountAggregateOutputType = {
@@ -2174,6 +2176,7 @@ export namespace Prisma {
     message: number
     contactIdSender: number
     contactIdReceiver: number
+    time: number
     _all: number
   }
 
@@ -2195,6 +2198,7 @@ export namespace Prisma {
     message?: true
     contactIdSender?: true
     contactIdReceiver?: true
+    time?: true
   }
 
   export type MessageMaxAggregateInputType = {
@@ -2202,6 +2206,7 @@ export namespace Prisma {
     message?: true
     contactIdSender?: true
     contactIdReceiver?: true
+    time?: true
   }
 
   export type MessageCountAggregateInputType = {
@@ -2209,6 +2214,7 @@ export namespace Prisma {
     message?: true
     contactIdSender?: true
     contactIdReceiver?: true
+    time?: true
     _all?: true
   }
 
@@ -2303,6 +2309,7 @@ export namespace Prisma {
     message: string
     contactIdSender: number
     contactIdReceiver: number
+    time: Date
     _count: MessageCountAggregateOutputType | null
     _avg: MessageAvgAggregateOutputType | null
     _sum: MessageSumAggregateOutputType | null
@@ -2329,6 +2336,7 @@ export namespace Prisma {
     message?: boolean
     contactIdSender?: boolean
     contactIdReceiver?: boolean
+    time?: boolean
     contactSender?: boolean | ContactDefaultArgs<ExtArgs>
     contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -2338,6 +2346,7 @@ export namespace Prisma {
     message?: boolean
     contactIdSender?: boolean
     contactIdReceiver?: boolean
+    time?: boolean
     contactSender?: boolean | ContactDefaultArgs<ExtArgs>
     contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -2347,6 +2356,7 @@ export namespace Prisma {
     message?: boolean
     contactIdSender?: boolean
     contactIdReceiver?: boolean
+    time?: boolean
     contactSender?: boolean | ContactDefaultArgs<ExtArgs>
     contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -2356,9 +2366,10 @@ export namespace Prisma {
     message?: boolean
     contactIdSender?: boolean
     contactIdReceiver?: boolean
+    time?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "contactIdSender" | "contactIdReceiver", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "contactIdSender" | "contactIdReceiver" | "time", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contactSender?: boolean | ContactDefaultArgs<ExtArgs>
     contactReceiver?: boolean | ContactDefaultArgs<ExtArgs>
@@ -2383,6 +2394,7 @@ export namespace Prisma {
       message: string
       contactIdSender: number
       contactIdReceiver: number
+      time: Date
     }, ExtArgs["result"]["message"]>
     composites: {}
   }
@@ -2812,6 +2824,7 @@ export namespace Prisma {
     readonly message: FieldRef<"Message", 'String'>
     readonly contactIdSender: FieldRef<"Message", 'Int'>
     readonly contactIdReceiver: FieldRef<"Message", 'Int'>
+    readonly time: FieldRef<"Message", 'DateTime'>
   }
     
 
@@ -3255,7 +3268,8 @@ export namespace Prisma {
     id: 'id',
     message: 'message',
     contactIdSender: 'contactIdSender',
-    contactIdReceiver: 'contactIdReceiver'
+    contactIdReceiver: 'contactIdReceiver',
+    time: 'time'
   };
 
   export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
@@ -3307,6 +3321,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -3395,6 +3423,7 @@ export namespace Prisma {
     message?: StringFilter<"Message"> | string
     contactIdSender?: IntFilter<"Message"> | number
     contactIdReceiver?: IntFilter<"Message"> | number
+    time?: DateTimeFilter<"Message"> | Date | string
     contactSender?: XOR<ContactScalarRelationFilter, ContactWhereInput>
     contactReceiver?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }
@@ -3404,6 +3433,7 @@ export namespace Prisma {
     message?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+    time?: SortOrder
     contactSender?: ContactOrderByWithRelationInput
     contactReceiver?: ContactOrderByWithRelationInput
   }
@@ -3416,6 +3446,7 @@ export namespace Prisma {
     message?: StringFilter<"Message"> | string
     contactIdSender?: IntFilter<"Message"> | number
     contactIdReceiver?: IntFilter<"Message"> | number
+    time?: DateTimeFilter<"Message"> | Date | string
     contactSender?: XOR<ContactScalarRelationFilter, ContactWhereInput>
     contactReceiver?: XOR<ContactScalarRelationFilter, ContactWhereInput>
   }, "id">
@@ -3425,6 +3456,7 @@ export namespace Prisma {
     message?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+    time?: SortOrder
     _count?: MessageCountOrderByAggregateInput
     _avg?: MessageAvgOrderByAggregateInput
     _max?: MessageMaxOrderByAggregateInput
@@ -3440,6 +3472,7 @@ export namespace Prisma {
     message?: StringWithAggregatesFilter<"Message"> | string
     contactIdSender?: IntWithAggregatesFilter<"Message"> | number
     contactIdReceiver?: IntWithAggregatesFilter<"Message"> | number
+    time?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
 
   export type ContactCreateInput = {
@@ -3505,6 +3538,7 @@ export namespace Prisma {
 
   export type MessageCreateInput = {
     message: string
+    time?: Date | string
     contactSender: ContactCreateNestedOneWithoutMessagesSentInput
     contactReceiver: ContactCreateNestedOneWithoutMessagesReceivedInput
   }
@@ -3514,10 +3548,12 @@ export namespace Prisma {
     message: string
     contactIdSender: number
     contactIdReceiver: number
+    time?: Date | string
   }
 
   export type MessageUpdateInput = {
     message?: StringFieldUpdateOperationsInput | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
     contactSender?: ContactUpdateOneRequiredWithoutMessagesSentNestedInput
     contactReceiver?: ContactUpdateOneRequiredWithoutMessagesReceivedNestedInput
   }
@@ -3527,6 +3563,7 @@ export namespace Prisma {
     message?: StringFieldUpdateOperationsInput | string
     contactIdSender?: IntFieldUpdateOperationsInput | number
     contactIdReceiver?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageCreateManyInput = {
@@ -3534,10 +3571,12 @@ export namespace Prisma {
     message: string
     contactIdSender: number
     contactIdReceiver: number
+    time?: Date | string
   }
 
   export type MessageUpdateManyMutationInput = {
     message?: StringFieldUpdateOperationsInput | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUncheckedUpdateManyInput = {
@@ -3545,6 +3584,7 @@ export namespace Prisma {
     message?: StringFieldUpdateOperationsInput | string
     contactIdSender?: IntFieldUpdateOperationsInput | number
     contactIdReceiver?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3649,6 +3689,17 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type ContactScalarRelationFilter = {
     is?: ContactWhereInput
     isNot?: ContactWhereInput
@@ -3659,6 +3710,7 @@ export namespace Prisma {
     message?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+    time?: SortOrder
   }
 
   export type MessageAvgOrderByAggregateInput = {
@@ -3672,6 +3724,7 @@ export namespace Prisma {
     message?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+    time?: SortOrder
   }
 
   export type MessageMinOrderByAggregateInput = {
@@ -3679,12 +3732,27 @@ export namespace Prisma {
     message?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+    time?: SortOrder
   }
 
   export type MessageSumOrderByAggregateInput = {
     id?: SortOrder
     contactIdSender?: SortOrder
     contactIdReceiver?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type MessageCreateNestedManyWithoutContactSenderInput = {
@@ -3795,6 +3863,10 @@ export namespace Prisma {
     connect?: ContactWhereUniqueInput
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type ContactUpdateOneRequiredWithoutMessagesSentNestedInput = {
     create?: XOR<ContactCreateWithoutMessagesSentInput, ContactUncheckedCreateWithoutMessagesSentInput>
     connectOrCreate?: ContactCreateOrConnectWithoutMessagesSentInput
@@ -3880,8 +3952,34 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type MessageCreateWithoutContactSenderInput = {
     message: string
+    time?: Date | string
     contactReceiver: ContactCreateNestedOneWithoutMessagesReceivedInput
   }
 
@@ -3889,6 +3987,7 @@ export namespace Prisma {
     id?: number
     message: string
     contactIdReceiver: number
+    time?: Date | string
   }
 
   export type MessageCreateOrConnectWithoutContactSenderInput = {
@@ -3903,6 +4002,7 @@ export namespace Prisma {
 
   export type MessageCreateWithoutContactReceiverInput = {
     message: string
+    time?: Date | string
     contactSender: ContactCreateNestedOneWithoutMessagesSentInput
   }
 
@@ -3910,6 +4010,7 @@ export namespace Prisma {
     id?: number
     message: string
     contactIdSender: number
+    time?: Date | string
   }
 
   export type MessageCreateOrConnectWithoutContactReceiverInput = {
@@ -3946,6 +4047,7 @@ export namespace Prisma {
     message?: StringFilter<"Message"> | string
     contactIdSender?: IntFilter<"Message"> | number
     contactIdReceiver?: IntFilter<"Message"> | number
+    time?: DateTimeFilter<"Message"> | Date | string
   }
 
   export type MessageUpsertWithWhereUniqueWithoutContactReceiverInput = {
@@ -4068,16 +4170,19 @@ export namespace Prisma {
     id?: number
     message: string
     contactIdReceiver: number
+    time?: Date | string
   }
 
   export type MessageCreateManyContactReceiverInput = {
     id?: number
     message: string
     contactIdSender: number
+    time?: Date | string
   }
 
   export type MessageUpdateWithoutContactSenderInput = {
     message?: StringFieldUpdateOperationsInput | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
     contactReceiver?: ContactUpdateOneRequiredWithoutMessagesReceivedNestedInput
   }
 
@@ -4085,16 +4190,19 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
     contactIdReceiver?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUncheckedUpdateManyWithoutContactSenderInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
     contactIdReceiver?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUpdateWithoutContactReceiverInput = {
     message?: StringFieldUpdateOperationsInput | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
     contactSender?: ContactUpdateOneRequiredWithoutMessagesSentNestedInput
   }
 
@@ -4102,12 +4210,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
     contactIdSender?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUncheckedUpdateManyWithoutContactReceiverInput = {
     id?: IntFieldUpdateOperationsInput | number
     message?: StringFieldUpdateOperationsInput | string
     contactIdSender?: IntFieldUpdateOperationsInput | number
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
