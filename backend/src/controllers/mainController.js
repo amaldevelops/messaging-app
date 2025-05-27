@@ -55,8 +55,8 @@ async function login(req, res, next) {
 // JSON Format: {"name":"","email":"","password":"","bio":""}
 async function register(req, res, next) {
   try {
-    const {name, email, password, bio}=req.body;
-    const response=await registerNewContact(name, email, password, bio);
+    const { name, email, password, bio } = req.body;
+    const response = await registerNewContact(name, email, password, bio);
     res.json({
       response: response,
     });
