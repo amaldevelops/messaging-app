@@ -1,4 +1,11 @@
-import {userMessages} from "../prisma/PrismaQueries.js"
+import {
+  contactMessages,
+  sendNewMessage,
+  authenticateContact,
+  registerNewContact,
+  userProfileRead,
+  userProfileUpdate,
+} from "../prisma/PrismaQueries.js";
 
 async function apiStatus(req, res, next) {
   try {
@@ -18,9 +25,9 @@ async function getAllContacts(req, res, next) {
 
 async function getContactMessages(req, res, next) {
   try {
-    const getUserMessages=await userMessages(1);
+    const getUserMessages = await contactMessages(1);
     console.log(getUserMessages);
-    res.json({ status: "Get logged in users messages",getUserMessages });
+    res.json({ status: "Get logged in users messages", getUserMessages });
   } catch (error) {
     console.error(error);
   }
