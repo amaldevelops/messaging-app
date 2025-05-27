@@ -5,7 +5,7 @@ import {
   getAllContacts,
   getContactMessages,
   sendMessageToContact,
-  loadLoggedUserProfile,
+  loadUserProfile,
   updateLoggedUserProfile,
 } from "../controllers/mainController.js";
 
@@ -22,8 +22,14 @@ mainRouter.get(
 
 mainRouter.post("/messaging-api/v1/messagetocontact", sendMessageToContact); // Authenticated End Point to send message to selected contact
 
-mainRouter.get("/messaging-api/v1/profile", loadLoggedUserProfile); // Authenticated End Point to get logged in users profile
+mainRouter.get(
+  "/messaging-api/v1/contacts/:contactID/profile",
+  loadUserProfile
+); // Authenticated End Point to get logged in users profile
 
-mainRouter.put("/messaging-api/v1/profile", updateLoggedUserProfile); // Authenticated End Point to update logged in users profile
+mainRouter.put(
+  "/messaging-api/v1/contacts/:contactID/profile",
+  updateLoggedUserProfile
+); // Authenticated End Point to update logged in users profile
 
 export default mainRouter;

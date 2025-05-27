@@ -17,8 +17,8 @@ async function apiStatus(req, res, next) {
         "/messaging-api/v1/contacts : GET Authenticated End Point to GET all the contacts and messages related current logged in user",
         "/messaging-api/v1/contacts/:loggedInUserID/messages : GET Authenticated End Point to GET messages sent and received by the logged in user",
         "/messaging-api/v1/messagetocontact : POST Authenticated End Point to send message to selected contact",
-        "/messaging-api/v1/profile : GET Authenticated End Point to get logged in users profile",
-        "/messaging-api/v1/profile : PUT Authenticated End Point to update logged in users profile",
+        "/messaging-api/v1/contacts/:contactID/profile: GET Authenticated End Point to get logged in users profile",
+        "/messaging-api/v1/contacts/:contactID/profile : PUT Authenticated End Point to update logged in users profile",
       ],
     });
   } catch (error) {
@@ -60,9 +60,15 @@ async function sendMessageToContact(req, res, next) {
   }
 }
 
-async function loadLoggedUserProfile(req, res, next) {
+async function loadUserProfile(req, res, next) {
   try {
-    res.json({ status: "Load logged in users profile" });
+    const userProfileID = parseInt(req.params.contactID);
+    const getUserProfile = await userProfileRead(userProfileID);
+
+    res.json({
+      status: "Load logged in users profile",
+      response: getUserProfile,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -70,7 +76,7 @@ async function loadLoggedUserProfile(req, res, next) {
 
 async function updateLoggedUserProfile(req, res, next) {
   try {
-    res.json({ status: "Load logged in users profile" });
+    res.json({ status: "Load users profile based on contact ID" });
   } catch (error) {
     console.error(error);
   }
@@ -81,6 +87,6 @@ export {
   getAllContacts,
   getContactMessages,
   sendMessageToContact,
-  loadLoggedUserProfile,
+  loadUserProfile,
   updateLoggedUserProfile,
 };

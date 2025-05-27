@@ -17,17 +17,17 @@ async function allContacts() {
   }
 }
 
-async function contactMessages(userID) {
+async function contactMessages(contactID) {
   try {
     const userMessages = await prismaQuery.contact.findUnique({
-      where: { id: userID },
+      where: { id: contactID },
       include: {
         messagesSent: true,
         messagesReceived: true,
         password: false,
       },
     });
-    console.log(userID);
+    console.log(contactID);
     console.log(userMessages);
     return userMessages;
   } catch (error) {
@@ -50,10 +50,24 @@ async function authenticateContact() {
   }
 }
 
-async function userProfileRead() {
+async function userProfileRead(contactID) {
   try {
+    const userProfile = await prismaQuery.contact.findUnique({
+      where: { id: contactID },
+      select: {
+        email: true,
+        password: false,
+        bio: true,
+        messagesSent: false,
+        messagesReceived: false,
+        password: false,
+      },
+    });
+    console.log(userProfile);
+    return userProfile;
   } catch (error) {
     console.error(error);
+    return "Error Fetching Profile";
   }
 }
 
