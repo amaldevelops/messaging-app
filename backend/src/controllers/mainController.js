@@ -28,15 +28,22 @@ async function apiStatus(req, res, next) {
   }
 }
 // Middleware to Authenticate login existing user using sent form data
+// POST Method
+// Require email, password,
+// Message is sent as body=>raw=>JSON
+// JSON Format: {"email":"","password":""}
 async function login(req, res, next) {
   try {
+    const { email, password } = req.body;
+
+    const response = await authenticateContact(email, password);
     res.json({
-      response: "response",
+      response: response,
     });
   } catch (error) {
     console.error(error);
     res.json({
-      response: "response",
+      response: response,
     });
   }
 }

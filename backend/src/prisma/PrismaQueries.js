@@ -57,8 +57,29 @@ async function sendNewMessage(senderID, receiverID, message) {
 }
 
 // Function to authenticate contact based on supplied email, password and stored password on database
-async function authenticateContact() {
+async function authenticateContact(email, password) {
   try {
+    const authenticate = await prismaQuery.contact.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    console.log(authenticate);
+    const passwordMatch = await bcrypt.compare(password, authenticate.password);
+    console.log("Password Matching:", passwordMatch);
+
+    if (passwordMatch) {
+      console.log("Authentication Success !");
+      return {
+        status: "Authentication Success",
+        name: authenticate.name,
+        email: authenticate.email,
+        bio: authenticate.bio,
+      };
+    } else {
+      console.log("Authentication Failure !");
+      return { status: "Authentication Failure" };
+    }
   } catch (error) {
     console.error(error);
   }
