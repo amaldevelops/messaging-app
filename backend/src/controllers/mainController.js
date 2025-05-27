@@ -35,11 +35,14 @@ async function getAllContacts(req, res, next) {
 
 async function getContactMessages(req, res, next) {
   try {
-    const getUserMessages = await contactMessages(1);
+    const contactID = parseInt(req.params.loggedInUserID);
+    console.log(contactID);
+    const getUserMessages = await contactMessages(contactID);
     console.log(getUserMessages);
     res.json({ status: "Get logged in users messages", getUserMessages });
   } catch (error) {
     console.error(error);
+    res.json({ error: "Error Fetching messages" });
   }
 }
 

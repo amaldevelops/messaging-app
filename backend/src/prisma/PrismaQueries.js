@@ -19,6 +19,7 @@ async function contactMessages(userID) {
     return userMessages;
   } catch (error) {
     console.error(error);
+    return "error, Contact ID not valid";
   }
 }
 
