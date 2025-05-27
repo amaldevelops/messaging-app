@@ -40,10 +40,19 @@ async function contactMessages(contactID) {
 
 // Function to send message to another contact based on sender contact ID and receiver contact ID
 
-async function sendNewMessage() {
+async function sendNewMessage(senderID, receiverID, message) {
   try {
+    const newMessage = await prismaQuery.message.create({
+      data: {
+        message: message,
+        contactIdSender: senderID,
+        contactIdReceiver: receiverID,
+      },
+    });
+    return "Message Sent";
   } catch (error) {
     console.error(error);
+    return "Error Sending Message";
   }
 }
 

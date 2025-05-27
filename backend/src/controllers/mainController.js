@@ -51,19 +51,29 @@ async function getContactMessages(req, res, next) {
     res.json({ error: "Error Fetching messages" });
   }
 }
-
+// Function to send messages to a contact
+// POST Method
+// Require loggedInUserID, contactID, message
+// Message is sent as body=>raw=>JSON, key=message, value="Message content"
+// {"loggedInUserID":"1","contactID":"2", "message":"JSON Works"}
 async function sendMessageToContact(req, res, next) {
   try {
-    const senderID = parseInt(req.params.loggedInUserID);
-    const receiverID = parseInt(req.params.contactID);
+    // const senderID = parseInt(req.params.loggedInUserID);
+    // const receiverID = parseInt(req.params.contactID);
 
+    const { message, loggedInUserID, contactID } = req.body;
+
+    const response = await sendNewMessage(
+      parseInt(loggedInUserID),
+      parseInt(contactID),
+      message
+    );
     res.json({
-      status: "Send messages to other user",
-      response: senderID,
-      receiverID,
+      response: response,
     });
   } catch (error) {
     console.error(error);
+    res.json({ error: "Error Sending messages" });
   }
 }
 
