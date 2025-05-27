@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs";
 
 const prismaQuery = new PrismaClient();
 
+// Function to get all contacts stored on database
+
 async function allContacts() {
   try {
     const getAllContacts = await prismaQuery.contact.findMany({
@@ -16,7 +18,7 @@ async function allContacts() {
     return "Error Fetching Contacts";
   }
 }
-
+// Function to get all logged in contacts sent and received messages saved on database
 async function contactMessages(contactID) {
   try {
     const userMessages = await prismaQuery.contact.findUnique({
@@ -36,6 +38,8 @@ async function contactMessages(contactID) {
   }
 }
 
+// Function to send message to another contact based on sender contact ID and receiver contact ID
+
 async function sendNewMessage() {
   try {
   } catch (error) {
@@ -43,6 +47,7 @@ async function sendNewMessage() {
   }
 }
 
+// Function to authenticate contact based on supplied email, password and stored password on database
 async function authenticateContact() {
   try {
   } catch (error) {
@@ -50,6 +55,7 @@ async function authenticateContact() {
   }
 }
 
+// Function to read profile based on contactID supplied
 async function userProfileRead(contactID) {
   try {
     const userProfile = await prismaQuery.contact.findUnique({
@@ -71,6 +77,7 @@ async function userProfileRead(contactID) {
   }
 }
 
+// Function to Update user Profile based on contactID
 async function userProfileUpdate() {
   try {
   } catch (error) {
@@ -78,6 +85,7 @@ async function userProfileUpdate() {
   }
 }
 
+// Function to register a new user into the database
 async function registerNewContact() {
   try {
   } catch (error) {
