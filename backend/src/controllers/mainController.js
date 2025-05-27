@@ -14,6 +14,8 @@ async function apiStatus(req, res, next) {
       status: "Backend Systems running ok",
       response: [
         "/messaging-api/v1/status : GET End Point to show the running status of backend systems",
+        "/messaging-api/v1/contacts/login : POST End Point to login to Messaging App",
+        "/messaging-api/v1/contacts/register : POST End Point to Register new user",
         "/messaging-api/v1/contacts : GET Authenticated End Point to GET all the contacts and messages related current logged in user",
         "/messaging-api/v1/contacts/:loggedInUserID/messages : GET Authenticated End Point to GET messages sent and received by the logged in user",
         "/messaging-api/v1/contacts/:loggedInUserID/message/:contactID : POST Authenticated End Point to send message to selected contact",
@@ -23,6 +25,33 @@ async function apiStatus(req, res, next) {
     });
   } catch (error) {
     console.error(error);
+  }
+}
+// Middleware to Authenticate login existing user using sent form data
+async function login(req, res, next) {
+  try {
+    res.json({
+      response: "response",
+    });
+  } catch (error) {
+    console.error(error);
+    res.json({
+      response: "response",
+    });
+  }
+}
+
+// Middleware to Register New user using received form data
+async function register(req, res, next) {
+  try {
+    res.json({
+      response: "response",
+    });
+  } catch (error) {
+    console.error(error);
+    res.json({
+      response: "response",
+    });
   }
 }
 
@@ -113,6 +142,8 @@ async function updateLoggedUserProfile(req, res, next) {
 
 export {
   apiStatus,
+  login,
+  register,
   getAllContacts,
   getContactMessages,
   sendMessageToContact,
