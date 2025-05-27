@@ -1,4 +1,5 @@
 import {
+  allContacts,
   contactMessages,
   sendNewMessage,
   authenticateContact,
@@ -11,7 +12,7 @@ async function apiStatus(req, res, next) {
   try {
     res.json({
       status: "Backend Systems running ok",
-      endpoints: [
+      response: [
         "/messaging-api/v1/status : GET End Point to show the running status of backend systems",
         "/messaging-api/v1/contacts : GET Authenticated End Point to GET all the contacts and messages related current logged in user",
         "/messaging-api/v1/contacts/:loggedInUserID/messages : GET Authenticated End Point to GET messages sent and received by the logged in user",
@@ -27,7 +28,9 @@ async function apiStatus(req, res, next) {
 
 async function getAllContacts(req, res, next) {
   try {
-    res.json({ status: "Get all contacts" });
+    const allContactsReceived = await allContacts();
+    console.log(allContactsReceived);
+    res.json({ status: "Get all contacts", response: allContactsReceived });
   } catch (error) {
     console.error(error);
   }
@@ -39,7 +42,10 @@ async function getContactMessages(req, res, next) {
     console.log(contactID);
     const getUserMessages = await contactMessages(contactID);
     console.log(getUserMessages);
-    res.json({ status: "Get logged in users messages", getUserMessages });
+    res.json({
+      status: "Get logged in users messages",
+      response: getUserMessages,
+    });
   } catch (error) {
     console.error(error);
     res.json({ error: "Error Fetching messages" });

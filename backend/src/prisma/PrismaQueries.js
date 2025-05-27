@@ -4,6 +4,19 @@ import bcrypt from "bcryptjs";
 
 const prismaQuery = new PrismaClient();
 
+async function allContacts() {
+  try {
+    const getAllContacts = await prismaQuery.contact.findMany({
+      include: { password: false },
+    });
+    console.log(getAllContacts);
+    return getAllContacts;
+  } catch (error) {
+    console.error(error);
+    return "Error Fetching Contacts";
+  }
+}
+
 async function contactMessages(userID) {
   try {
     const userMessages = await prismaQuery.contact.findUnique({
@@ -59,6 +72,7 @@ async function registerNewContact() {
 }
 
 export {
+  allContacts,
   contactMessages,
   sendNewMessage,
   authenticateContact,
