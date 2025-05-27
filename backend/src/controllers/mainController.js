@@ -54,8 +54,9 @@ async function getContactMessages(req, res, next) {
 // Function to send messages to a contact
 // POST Method
 // Require loggedInUserID, contactID, message
-// Message is sent as body=>raw=>JSON, key=message, value="Message content"
-// {"loggedInUserID":"1","contactID":"2", "message":"JSON Works"}
+// Message is sent as body=>raw=>JSON
+// JSON Format: {"loggedInUserID":"","contactID":"", "message":""}
+
 async function sendMessageToContact(req, res, next) {
   try {
     // const senderID = parseInt(req.params.loggedInUserID);
@@ -88,15 +89,25 @@ async function loadUserProfile(req, res, next) {
     });
   } catch (error) {
     console.error(error);
-    res.json({ error: "Error Sending message" });
+    res.json({ error: "Error Loading profile" });
   }
 }
-
+// This function will update the user profile based on contactID
+// PUT Method
+// Require contactID, updatedBio
+// Message is sent as body=>raw=>JSON,
+// JSON Format expected: {"contactID":"", "updatedBio":""}
 async function updateLoggedUserProfile(req, res, next) {
   try {
-    res.json({ status: "Load users profile based on contact ID" });
+    const { contactID, updatedBio } = req.body;
+    const updateProfile = await userProfileUpdate(
+      parseInt(contactID),
+      updatedBio
+    );
+    res.json({ response: updateProfile });
   } catch (error) {
     console.error(error);
+    res.json({ error: "Error Updating profile" });
   }
 }
 

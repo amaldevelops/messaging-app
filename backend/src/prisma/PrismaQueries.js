@@ -87,10 +87,18 @@ async function userProfileRead(contactID) {
 }
 
 // Function to Update user Profile based on contactID
-async function userProfileUpdate() {
+async function userProfileUpdate(contactID, updatedBio) {
   try {
+    const updateProfile = await prismaQuery.contact.update({
+      where: { id: contactID },
+      data: {
+        bio: updatedBio,
+      },
+    });
+    return "User Profile Updated!";
   } catch (error) {
     console.error(error);
+    return "User Profile Update ERROR !";
   }
 }
 
