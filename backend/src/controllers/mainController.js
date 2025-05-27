@@ -49,15 +49,21 @@ async function login(req, res, next) {
 }
 
 // Middleware to Register New user using received form data
+// POST Method
+// Require name, email, password, bio
+// Message is sent as body=>raw=>JSON
+// JSON Format: {"name":"","email":"","password":"","bio":""}
 async function register(req, res, next) {
   try {
+    const {name, email, password, bio}=req.body;
+    const response=await registerNewContact(name, email, password, bio);
     res.json({
-      response: "response",
+      response: response,
     });
   } catch (error) {
     console.error(error);
     res.json({
-      response: "response",
+      response: response,
     });
   }
 }

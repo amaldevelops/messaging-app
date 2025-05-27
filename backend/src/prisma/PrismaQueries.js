@@ -4,6 +4,54 @@ import bcrypt from "bcryptjs";
 
 const prismaQuery = new PrismaClient();
 
+// Function to register a new user into the database
+async function registerNewContact(name, email, password, bio) {
+  try {
+    const createContact = await prismaQuery.contact.create({
+      data: {
+        name: name,
+        email: email,
+        password: await bcrypt.hash(password, 10),
+        bio: bio,
+      },
+    });
+
+    return "User Registered successfully !";
+  } catch (error) {
+    console.error(error);
+    return "User Registration Error, Please try again !";
+  }
+}
+
+// Function to authenticate contact based on supplied email, password and stored password on database
+async function authenticateContact(email, password) {
+  try {
+    const authenticate = await prismaQuery.contact.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    console.log(authenticate);
+    const passwordMatch = await bcrypt.compare(password, authenticate.password);
+    console.log("Password Matching:", passwordMatch);
+
+    if (passwordMatch) {
+      console.log("Authentication Success !");
+      return {
+        status: "Authentication Success",
+        name: authenticate.name,
+        email: authenticate.email,
+        bio: authenticate.bio,
+      };
+    } else {
+      console.log("Authentication Failure !");
+      return { status: "Authentication Failure" };
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // Function to get all contacts stored on database
 
 async function allContacts() {
@@ -56,35 +104,6 @@ async function sendNewMessage(senderID, receiverID, message) {
   }
 }
 
-// Function to authenticate contact based on supplied email, password and stored password on database
-async function authenticateContact(email, password) {
-  try {
-    const authenticate = await prismaQuery.contact.findUnique({
-      where: {
-        email: email,
-      },
-    });
-    console.log(authenticate);
-    const passwordMatch = await bcrypt.compare(password, authenticate.password);
-    console.log("Password Matching:", passwordMatch);
-
-    if (passwordMatch) {
-      console.log("Authentication Success !");
-      return {
-        status: "Authentication Success",
-        name: authenticate.name,
-        email: authenticate.email,
-        bio: authenticate.bio,
-      };
-    } else {
-      console.log("Authentication Failure !");
-      return { status: "Authentication Failure" };
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 // Function to read profile based on contactID supplied
 async function userProfileRead(contactID) {
   try {
@@ -120,14 +139,6 @@ async function userProfileUpdate(contactID, updatedBio) {
   } catch (error) {
     console.error(error);
     return "User Profile Update ERROR !";
-  }
-}
-
-// Function to register a new user into the database
-async function registerNewContact() {
-  try {
-  } catch (error) {
-    console.error(error);
   }
 }
 
