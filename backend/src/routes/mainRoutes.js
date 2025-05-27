@@ -20,7 +20,7 @@ mainRouter.get(
   getContactMessages
 ); // Authenticated End Point to GET messages sent and received by the logged in user
 
-mainRouter.post("/messaging-api/v1/messagetocontact", sendMessageToContact); // Authenticated End Point to send message to selected contact
+mainRouter.post("/messaging-api/v1/contacts/:loggedInUserID/message/:contactID", sendMessageToContact); // Authenticated End Point to send message to selected contact
 
 mainRouter.get(
   "/messaging-api/v1/contacts/:contactID/profile",

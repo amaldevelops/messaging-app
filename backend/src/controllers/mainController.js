@@ -16,7 +16,7 @@ async function apiStatus(req, res, next) {
         "/messaging-api/v1/status : GET End Point to show the running status of backend systems",
         "/messaging-api/v1/contacts : GET Authenticated End Point to GET all the contacts and messages related current logged in user",
         "/messaging-api/v1/contacts/:loggedInUserID/messages : GET Authenticated End Point to GET messages sent and received by the logged in user",
-        "/messaging-api/v1/messagetocontact : POST Authenticated End Point to send message to selected contact",
+        "/messaging-api/v1/contacts/:loggedInUserID/message/:contactID : POST Authenticated End Point to send message to selected contact",
         "/messaging-api/v1/contacts/:contactID/profile: GET Authenticated End Point to get logged in users profile",
         "/messaging-api/v1/contacts/:contactID/profile : PUT Authenticated End Point to update logged in users profile",
       ],
@@ -54,7 +54,14 @@ async function getContactMessages(req, res, next) {
 
 async function sendMessageToContact(req, res, next) {
   try {
-    res.json({ status: "Send messages to other user" });
+    const senderID = parseInt(req.params.loggedInUserID);
+    const receiverID = parseInt(req.params.contactID);
+
+    res.json({
+      status: "Send messages to other user",
+      response: senderID,
+      receiverID,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -71,6 +78,7 @@ async function loadUserProfile(req, res, next) {
     });
   } catch (error) {
     console.error(error);
+    res.json({ error: "Error Sending message" });
   }
 }
 
