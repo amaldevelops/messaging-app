@@ -8,6 +8,8 @@ import {
   userProfileUpdate,
 } from "../prisma/PrismaQueries.js";
 
+import { createJWT,authenticateJWT } from "../middleware/Authenticator.js";
+
 async function apiStatus(req, res, next) {
   try {
     res.json({
@@ -37,6 +39,7 @@ async function login(req, res, next) {
     const { email, password } = req.body;
 
     const response = await authenticateContact(email, password);
+    await createJWT(response);
     res.json({
       response: response,
     });
