@@ -8,7 +8,7 @@ import {
   userProfileUpdate,
 } from "../prisma/PrismaQueries.js";
 
-import { createJWT,authenticateJWT } from "../middleware/Authenticator.js";
+import { createJWT, authenticateJWT } from "../middleware/Authenticator.js";
 
 async function apiStatus(req, res, next) {
   try {
@@ -39,9 +39,9 @@ async function login(req, res, next) {
     const { email, password } = req.body;
 
     const response = await authenticateContact(email, password);
-    const createdJWT=await createJWT(response);
+    const createdJWT = await createJWT(response);
     res.json({
-      jwt:createdJWT.token,
+      jwt: createdJWT.token,
     });
   } catch (error) {
     console.error(error);
