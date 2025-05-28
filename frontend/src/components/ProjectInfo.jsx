@@ -1,6 +1,6 @@
 function ProjectInfo() {
   return (
-    <div>
+    <div className="projectInfoDiv">
       <h3>Project Technical Information</h3>
 
       <h3>Core functionality</h3>
