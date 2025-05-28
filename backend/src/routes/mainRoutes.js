@@ -11,6 +11,8 @@ import {
   updateLoggedUserProfile,
 } from "../controllers/mainController.js";
 
+import { authenticateJWT } from "../middleware/Authenticator.js";
+
 const mainRouter = Router();
 
 mainRouter.get("/messaging-api/v1/status", apiStatus); // End Point to show the running status of backend systems
@@ -19,7 +21,7 @@ mainRouter.post("/messaging-api/v1/contacts/login", login); // POST End Point to
 
 mainRouter.post("/messaging-api/v1/contacts/register", register); // POST End Point to Register new user
 
-mainRouter.get("/messaging-api/v1/contacts", getAllContacts); // Authenticated End Point to GET all the contacts and messages related current logged in user
+mainRouter.get("/messaging-api/v1/contacts", authenticateJWT,getAllContacts); // Authenticated End Point to GET all the contacts and messages related current logged in user
 
 mainRouter.get(
   "/messaging-api/v1/contacts/:loggedInUserID/messages",

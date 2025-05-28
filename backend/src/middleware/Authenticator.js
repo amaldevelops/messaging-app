@@ -1,10 +1,15 @@
 import jwt from "jsonwebtoken";
 
+// ***** Authentication using JWT (Without using Passport.js) *****
+
+// Install jsonwebtoken package : `npm install jsonwebtoken`
+// `createJWT` custom middleware will create a JWT token that can be sent as JSON via an API End Point. When authenticating routes custom middleware `authenticateJWT` can be used.
+// To Protect a route add `authenticateJWT` middleware before all the other middleware that needs to be protected E.g: `mainRouter.get("/messaging-api/v1/contacts", authenticateJWT, getAllContacts);`
 // Client will need to save the token in the browser local storage
-// When authorizing routes with JWT token will need to be sent as an "Authorization" header
-// It is required to use format "Bearer <JWT>" as below;
+// From Front End when authorizing routes with JWT token will need to be sent as an "Authorization" header, it is required to use format "Bearer <JWT>" as below;
 // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDQwOTcyOTYsImV4cCI6MTc0NDA5OTA5Nn0.PboRrhU7xFTzQUltX_ZA59eWs-pxXfH8JHC_tU7jIKA
 
+// Function to create JWT
 async function createJWT(loginStatus) {
   try {
     return new Promise((resolve, reject) => {
@@ -34,6 +39,7 @@ async function createJWT(loginStatus) {
   }
 }
 
+// Middleware to authenticate JWT
 function authenticateJWT(req, res, next) {
   // Split the Bearer <access_token> and get the <access_token>
   const token = req.token || req.headers["authorization"]?.split(" ")[1];

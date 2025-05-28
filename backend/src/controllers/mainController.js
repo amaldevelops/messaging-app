@@ -39,9 +39,9 @@ async function login(req, res, next) {
     const { email, password } = req.body;
 
     const response = await authenticateContact(email, password);
-    await createJWT(response);
+    const createdJWT=await createJWT(response);
     res.json({
-      response: response,
+      jwt:createdJWT.token,
     });
   } catch (error) {
     console.error(error);
