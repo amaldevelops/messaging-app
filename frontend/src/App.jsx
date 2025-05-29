@@ -13,8 +13,16 @@ function App() {
     <>
       <div>
         <h1>Web Based Messaging App </h1>
-        <button onClick={() => Navigate("login")}>Login</button>
-        <button onClick={() => Navigate("register")}>Register</button>
+
+        <button className="button-container" onClick={() => Navigate("login")}>
+          Login
+        </button>
+        <button
+          className="button-container"
+          onClick={() => Navigate("register")}
+        >
+          Register
+        </button>
         <Outlet />
       </div>
     </>

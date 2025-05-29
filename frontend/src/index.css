@@ -171,3 +171,15 @@ li::before {
     padding: 0.5rem;
   }
 }
+
+.form-button-container {
+  margin-top: 20px; /* Adjust this value as needed for your desired gap */
+  /* Or use a responsive unit */
+  /* margin-top: 1.5rem; */
+}
+
+.button-container {
+  margin-left: 50px; /* Adjust this value as needed for your desired gap */
+  /* Or use a responsive unit */
+  /* margin-top: 1.5rem; */
+}
