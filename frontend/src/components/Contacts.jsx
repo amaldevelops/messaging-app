@@ -2,31 +2,21 @@ import JWTStatus from "./JwtStatus";
 import { allContacts } from "../ApiQueries.js"; // Combined imports
 import { useState, useEffect } from "react";
 
-// Removed loadProfile as it wasn't used in this specific component's logic for fetching allContacts
-// If loadProfile is needed for other purposes, you can keep it.
-
 function Contacts() {
   // 1. Initialize allContactsState as an EMPTY ARRAY
-  const [allContactsState, setAllContactsState] = useState([]); // Changed name to avoid confusion
+  const [allContactsState, setAllContactsState] = useState([]);
   const [statusMessage, setStatusMessage] = useState(""); // Optional: to store the "status" from API
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchContactsData = async () => {
-      // Renamed function for clarity
       try {
         setLoading(true); // Ensure loading is true at the start of fetch
-        // const decodedID = decodeJWTPayload(); // Assuming this is needed for the API call or auth
-        // if (!decodedID || !decodedID.id) {
-        //   setError("Could not decode user ID from JWT.");
-        //   setLoading(false);
-        //   return;
-        // }
 
         const loadedContactInfo = await allContacts(); // This should return the full API response object
 
-        // 2. Check if the response and the nested 'response' array exist
+        // Check if the response and the nested 'response' array exist
         if (
           loadedContactInfo &&
           loadedContactInfo.response &&
@@ -37,7 +27,7 @@ function Contacts() {
             setStatusMessage(loadedContactInfo.status); // Optionally set the status message
           }
         } else if (Array.isArray(loadedContactInfo)) {
-          // Fallback if allContacts() directly returns the array (less likely based on your initial JSON)
+          // Fallback if allContacts() directly returns the array
           setAllContactsState(loadedContactInfo);
           setStatusMessage("Contacts loaded"); // Generic status
         } else {
@@ -77,21 +67,25 @@ function Contacts() {
       {!statusMessage && <h1>Contacts</h1>}
 
       <div>
-        {/* 3. Now allContactsState is an array, so .length and .map will work */}
         {allContactsState.length > 0 ? (
           <ul>
             {allContactsState.map((contact) => (
               <li key={contact.id}>
-                <h2>{contact.name}</h2>
-                <p>
-                  <strong>ID:</strong> {contact.id}
+                   <p className="p-format">
+                  <strong>ID : </strong> {contact.id}
                 </p>
-                <p>
+                <p className="p-format">
+                  <strong>Name : </strong>
+                  {contact.name}
+                </p>
+             
+                <p className="p-format">
                   <strong>Email:</strong> {contact.email}
                 </p>
-                <p>
+                <p className="p-format">
                   <strong>Bio:</strong> {contact.bio}
                 </p>
+                <button>Message</button>
               </li>
             ))}
           </ul>

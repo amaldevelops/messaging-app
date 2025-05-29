@@ -177,5 +177,5 @@ export {
   decodeJWTPayload,
   loggedContactMessages,
   clearJwtLogOut,
-  allContacts
+  allContacts,
 };
