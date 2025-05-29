@@ -3,11 +3,11 @@ import { useState, useEffect } from "react"; // Import useEffect
 
 function JWTStatus() {
   const [JWT, setJWT] = useState({
-    id: "N/A", // Use "N/A" or null as initial values for better display
-    status: "Not Authenticated",
-    contactName: "N/A",
-    email: "N/A",
-    bio: "N/A",
+    id: "  N/A", // Use "N/A" or null as initial values for better display
+    status: "  Not Authenticated",
+    contactName: "   N/A",
+    email: "   N/A",
+    bio: "   N/A",
   });
 
   // Use useEffect to run decodeJWTPayload and setJWT only once after initial render
