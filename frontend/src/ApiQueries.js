@@ -22,4 +22,17 @@ async function ApiLogin(formData) {
   }
 }
 
-export { ApiLogin };
+async function ApiRegister(formData)
+{
+    try{
+
+        console.log(formData)
+    }
+
+    catch(error)
+    {
+        console.error(error);
+    }
+}
+
+export { ApiLogin,ApiRegister };
