@@ -1,11 +1,13 @@
-import {loggedContactMessages} from "../ApiQueries.js"
+import { loggedContactMessages } from "../ApiQueries.js";
+
+import JWTStatus from "./JwtStatus";
 
 function UserMessages() {
-
-  const response=loggedContactMessages(1);
-  console.log(response)
+  const response = loggedContactMessages(1);
+  console.log(response);
   return (
     <div>
+      <JWTStatus />
       <h1>Messages</h1>
     </div>
   );

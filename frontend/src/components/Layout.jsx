@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import MenuBar from "./MenuBar";
-import JWTStatus from "./JwtStatus";
 
 function Layout() {
   return (
@@ -8,9 +7,7 @@ function Layout() {
       <div>
         <MenuBar />
       </div>
-      <div>
-        <JWTStatus/>
-      </div>
+      <div></div>
       <main>
         <Outlet />
       </main>

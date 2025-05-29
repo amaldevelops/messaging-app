@@ -1,4 +1,6 @@
-import { loadProfile,decodeJWTPayload } from "../ApiQueries.js";
+import { loadProfile, decodeJWTPayload } from "../ApiQueries.js";
+
+import JWTStatus from "./JwtStatus";
 
 function Profile() {
   loadProfile(3);
@@ -6,6 +8,7 @@ function Profile() {
 
   return (
     <div>
+      <JWTStatus />
       <h1>User Profile</h1>
     </div>
   );
