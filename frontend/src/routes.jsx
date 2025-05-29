@@ -5,6 +5,8 @@ import Profile from "./components/Profile";
 import ErrorPage from "./ErrorPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import UserMessages from "./components/UserMessages";
+import Contacts from "./components/Contacts";
 
 const routes = [
   {
@@ -33,6 +35,16 @@ const routes = [
       {
         path: "/messaging-app/register",
         element: <Register />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/messaging-app/contacts",
+        element: <Contacts />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/messaging-app/messages",
+        element: <UserMessages />,
         errorElement: <ErrorPage />,
       },
     ],
