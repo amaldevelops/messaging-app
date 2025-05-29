@@ -9,15 +9,12 @@ import "./App.css";
 function App() {
   const Navigate = useNavigate();
 
-  function loginButton() {
-    Navigate("login");
-  }
-
   return (
     <>
       <div>
         <h1>Web Based Messaging App </h1>
-        <button onClick={() => loginButton()}></button>
+        <button onClick={() => Navigate("login")}>Login</button>
+        <button onClick={() => Navigate("register")}>Register</button>
         <Outlet />
       </div>
     </>

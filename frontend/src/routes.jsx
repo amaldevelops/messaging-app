@@ -4,6 +4,7 @@ import ProjectInfo from "./components/ProjectInfo";
 import Profile from "./components/Profile";
 import ErrorPage from "./ErrorPage";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 const routes = [
   {
@@ -24,9 +25,14 @@ const routes = [
         element: <Profile />,
         errorElement: <ErrorPage />,
       },
-          {
+      {
         path: "/messaging-app/login",
         element: <Login />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/messaging-app/register",
+        element: <Register />,
         errorElement: <ErrorPage />,
       },
     ],
