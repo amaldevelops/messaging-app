@@ -3,6 +3,7 @@ import App from "./App";
 import ProjectInfo from "./components/ProjectInfo";
 import Profile from "./components/Profile";
 import ErrorPage from "./ErrorPage";
+import Login from "./components/Login";
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
       {
         path: "/messaging-app/profile",
         element: <Profile />,
+        errorElement: <ErrorPage />,
+      },
+          {
+        path: "/messaging-app/login",
+        element: <Login />,
         errorElement: <ErrorPage />,
       },
     ],

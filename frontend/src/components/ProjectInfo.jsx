@@ -54,16 +54,16 @@ function ProjectInfo() {
 
       <h4>Backend : Database Design</h4>
       <ul>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Data model Design : Authentication, Users, Message Storage
         </li>
 
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Users Table fields: Full Name, E-mail (This will be the main ID for
           linking posts), Hashed Password
         </li>
 
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Messages Table fields: Sender ID(e-mail), Receiver ID (e-mail),
           Message Content, Time Stamp
         </li>
@@ -71,14 +71,14 @@ function ProjectInfo() {
 
       <h4>Back End : Architecture</h4>
       <ul>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Authorization : Decide on Passport.js, JWT, cookie based or 3rd Party
           API based authentication
         </li>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Sending messages to another user, decide on realtime or JSON API based{" "}
         </li>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Customizing a user profile logic
         </li>
       </ul>
