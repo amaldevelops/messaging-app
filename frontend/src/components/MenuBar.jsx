@@ -4,8 +4,10 @@ function MenuBar() {
     <>
       <div className="menuBar">
         <Link to="/messaging-app">Home</Link>
-        <Link to="/messaging-app/projectinfo">Technical Info</Link>
+        <Link to="/messaging-app/messages">Messages</Link>
         <Link to="/messaging-app/profile">Profile</Link>
+        <Link to="/messaging-app/projectinfo">Technical Info</Link>
+
         <a
           href="https://github.com/amaldevelops/messaging-app/"
           target="_blank"

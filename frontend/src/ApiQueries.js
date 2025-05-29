@@ -121,10 +121,35 @@ function decodeJWTPayload(runOnRequest) {
   }
 }
 
+async function loggedContactMessages(contactID)
+{
+  try {
+    const storedJwt = await loadJwtTokenToHttpHeader();
+
+    let response = await fetch(
+      `${apiURL}/messaging-api/v1/contacts/${contactID}/messages`,
+      {
+        method: "GET",
+        headers: { ...storedJwt, "Content-Type": "application/json" },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP Error! status:${response.status}`);
+    }
+
+    const queryResult = await response.json();
+    console.log(queryResult);
+    return queryResult;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   ApiLogin,
   ApiRegister,
   loadJwtTokenToHttpHeader,
   loadProfile,
   decodeJWTPayload,
+  loggedContactMessages
 };
