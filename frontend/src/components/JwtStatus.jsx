@@ -28,16 +28,18 @@ function JWTStatus() {
       } else {
         // Handle case where decodeJWTPayload returns null or undefined
         console.warn("JWTDecoded is null or undefined. JWT state not updated.");
-        setJWT(prevState => ({ // Reset or set default unauthenticated state
+        setJWT((prevState) => ({
+          // Reset or set default unauthenticated state
           ...prevState,
-          status: "Not Authenticated"
+          status: "Not Authenticated",
         }));
       }
     } catch (error) {
       console.error("Error decoding JWT payload:", error);
-      setJWT(prevState => ({ // Handle errors, e.g., token not found or invalid
+      setJWT((prevState) => ({
+        // Handle errors, e.g., token not found or invalid
         ...prevState,
-        status: "Error decoding token"
+        status: "Error decoding token",
       }));
     }
   }, []); // The empty dependency array [] ensures this effect runs only once after the initial render

@@ -121,8 +121,7 @@ function decodeJWTPayload(runOnRequest) {
   }
 }
 
-async function loggedContactMessages(contactID)
-{
+async function loggedContactMessages(contactID) {
   try {
     const storedJwt = await loadJwtTokenToHttpHeader();
 
@@ -145,11 +144,17 @@ async function loggedContactMessages(contactID)
   }
 }
 
+async function clearJwtLogOut() {
+  localStorage.removeItem("jwt");
+  return "loggedOut";
+}
+
 export {
   ApiLogin,
   ApiRegister,
   loadJwtTokenToHttpHeader,
   loadProfile,
   decodeJWTPayload,
-  loggedContactMessages
+  loggedContactMessages,
+  clearJwtLogOut,
 };

@@ -1,5 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { clearJwtLogOut } from "../ApiQueries.js";
+
 function MenuBar() {
+  const Navigate = useNavigate();
+
+  function logout() {
+    clearJwtLogOut();
+    Navigate("/messaging-app");
+    console.log("Clear JWT");
+  }
   return (
     <>
       <div className="menuBar">
@@ -17,6 +26,7 @@ function MenuBar() {
         <a href="https://www.amalk.au/messaging-app/" target="_blank">
           Live Demo
         </a>
+        <button onClick={logout}>Logout</button>
       </div>
     </>
   );
