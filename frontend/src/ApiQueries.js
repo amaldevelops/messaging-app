@@ -2,7 +2,6 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 async function ApiLogin(formData) {
   try {
-    console.log(formData);
     let response = await fetch(`${apiURL}/messaging-api/v1/contacts/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,4 +42,43 @@ async function ApiRegister(formData) {
   }
 }
 
-export { ApiLogin, ApiRegister };
+async function loadJwtTokenToHttpHeader() {
+  try {
+    const jwtToken = localStorage.getItem("jwt");
+
+    if (!jwtToken) {
+      console.log("JWT Token invalid");
+    }
+
+    const Headers = { Authorization: `Bearer ${jwtToken}` };
+    return Headers;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+async function loadProfile(contactID) {
+  try {
+    const storedJwt = await loadJwtTokenToHttpHeader();
+
+    let response = await fetch(
+      `${apiURL}/messaging-api/v1/contacts/${contactID}/profile`,
+      {
+        method: "GET",
+        headers: { ...storedJwt, "Content-Type": "application/json" },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP Error! status:${response.status}`);
+    }
+
+    const queryResult = await response.json();
+    console.log(queryResult);
+    return queryResult;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { ApiLogin, ApiRegister, loadJwtTokenToHttpHeader, loadProfile };
