@@ -22,17 +22,25 @@ async function ApiLogin(formData) {
   }
 }
 
-async function ApiRegister(formData)
-{
-    try{
+async function ApiRegister(formData) {
+  try {
+    console.log(formData);
 
-        console.log(formData)
-    }
-
-    catch(error)
-    {
-        console.error(error);
-    }
+    let response = await fetch(`${apiURL}/messaging-api/v1/contacts/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        bio: formData.bio,
+      }),
+    });
+    const ApiResponse = await response.json();
+    console.log(ApiResponse);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-export { ApiLogin,ApiRegister };
+export { ApiLogin, ApiRegister };
