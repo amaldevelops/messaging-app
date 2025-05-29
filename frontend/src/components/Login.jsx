@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
+import { ApiLogin } from "../ApiQueries.js";
+
 function Login() {
   const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     Navigate("/messaging-app/messages");
+    ApiLogin("1@gmail.com", "test");
   };
 
   return (
