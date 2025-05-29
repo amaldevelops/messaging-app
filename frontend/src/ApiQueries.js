@@ -1,14 +1,14 @@
 const apiURL = import.meta.env.VITE_API_URL;
 
-async function ApiLogin(Email, Password) {
+async function ApiLogin(formData) {
   try {
-    console.log(apiURL);
+    console.log(formData);
     let response = await fetch(`${apiURL}/messaging-api/v1/contacts/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: Email,
-        password: Password,
+        email: formData.email,
+        password: formData.password,
       }),
     });
     if (!response.ok) {
@@ -17,8 +17,6 @@ async function ApiLogin(Email, Password) {
 
     const ApiResponse = await response.json();
     localStorage.setItem("jwt", ApiResponse.jwt);
-    console.log(ApiResponse.jwt);
-    return ApiResponse;
   } catch (error) {
     console.error(error);
   }
