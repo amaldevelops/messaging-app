@@ -183,3 +183,11 @@ li::before {
   /* Or use a responsive unit */
   /* margin-top: 1.5rem; */
 }
+
+.JWTDiv {
+  display: flex;
+  flex-direction: row; /* Changed to column for better stacking on small screens */
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Align items to the top for content flow */
+  border: 1px solid black;
+}
