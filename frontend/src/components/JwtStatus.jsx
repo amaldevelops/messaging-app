@@ -14,7 +14,6 @@ function JWTStatus() {
   useEffect(() => {
     try {
       const JWTDecoded = decodeJWTPayload();
-      console.log("Decoded JWT payload:", JWTDecoded); // Log to see what decodeJWTPayload returns
 
       // Ensure JWTDecoded and its properties exist before setting state
       if (JWTDecoded) {
@@ -43,8 +42,6 @@ function JWTStatus() {
       }));
     }
   }, []); // The empty dependency array [] ensures this effect runs only once after the initial render
-
-  console.log("Current JWT state:", JWT); // This will log on every render
 
   return (
     <div className="JWTDiv">
