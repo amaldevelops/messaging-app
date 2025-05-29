@@ -13,6 +13,7 @@ function MenuBar() {
     <>
       <div className="menuBar">
         <Link to="/messaging-app">Home</Link>
+        <Link to="/messaging-app/contacts">All Contacts</Link>
         <Link to="/messaging-app/messages">Messages</Link>
         <Link to="/messaging-app/profile">Profile</Link>
         <Link to="/messaging-app/projectinfo">Technical Info</Link>

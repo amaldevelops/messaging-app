@@ -46,6 +46,7 @@ function Profile() {
       <h1>User Profile</h1>
       <p>E-Mail: {userProfile.email}</p>
       <p>Bio: {userProfile.bio}</p> {/* Display bio as well */}
+      <button>Edit Profile</button>
     </div>
   );
 }
