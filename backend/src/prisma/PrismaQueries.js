@@ -39,6 +39,7 @@ async function authenticateContact(email, password) {
       console.log("Authentication Success !");
       return {
         status: "Authentication Success",
+        id: authenticate.id,
         name: authenticate.name,
         email: authenticate.email,
         bio: authenticate.bio,

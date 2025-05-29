@@ -1,7 +1,8 @@
-import { loadProfile } from "../ApiQueries.js";
+import { loadProfile,decodeJWTPayload } from "../ApiQueries.js";
 
 function Profile() {
   loadProfile(3);
+  console.log(decodeJWTPayload());
 
   return (
     <div>

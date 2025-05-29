@@ -81,4 +81,50 @@ async function loadProfile(contactID) {
   }
 }
 
-export { ApiLogin, ApiRegister, loadJwtTokenToHttpHeader, loadProfile };
+function decodeJWTPayload(runOnRequest) {
+  try {
+    const jwtToken = localStorage.getItem("jwt");
+
+    if (!jwtToken || typeof jwtToken !== "string" || !jwtToken.includes(".")) {
+      console.warn("No valid JWT found in localStorage");
+      return {};
+    }
+
+    const jwtExtractPayLoad = jwtToken.split(".")[1];
+
+    function base64UrlToJsonString(string) {
+      string = string.replace(/-/g, "+").replace(/_/g, "/");
+      const pad = string.length % 4;
+      if (pad) string += "=".repeat(4 - pad);
+
+      try {
+        return decodeURIComponent(
+          atob(string)
+            .split("")
+            .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
+            .join("")
+        );
+      } catch (err) {
+        console.error("Invalid base64 encoding in JWT:", err);
+        return null;
+      }
+    }
+
+    const jsonString = base64UrlToJsonString(jwtExtractPayLoad);
+    if (!jsonString) return {};
+
+    const payLoad = JSON.parse(jsonString);
+    return payLoad;
+  } catch (error) {
+    console.error("Failed to Decode JWT payload:", error);
+    return {};
+  }
+}
+
+export {
+  ApiLogin,
+  ApiRegister,
+  loadJwtTokenToHttpHeader,
+  loadProfile,
+  decodeJWTPayload,
+};

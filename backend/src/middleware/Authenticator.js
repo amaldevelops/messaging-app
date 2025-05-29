@@ -16,6 +16,7 @@ async function createJWT(loginStatus) {
       jwt.sign(
         {
           status: loginStatus.status,
+          id: loginStatus.id,
           contactName: loginStatus.name,
           email: loginStatus.email,
           bio: loginStatus.bio,
