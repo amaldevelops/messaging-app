@@ -137,7 +137,7 @@ async function loggedContactMessages(contactID) {
     }
 
     const queryResult = await response.json();
-    console.log(queryResult);
+    // console.log(queryResult);
     return queryResult;
   } catch (error) {
     console.error(error);
@@ -149,6 +149,26 @@ async function clearJwtLogOut() {
   return "loggedOut";
 }
 
+async function allContacts() {
+  try {
+    const storedJwt = await loadJwtTokenToHttpHeader();
+
+    let response = await fetch(`${apiURL}/messaging-api/v1/contacts/`, {
+      method: "GET",
+      headers: { ...storedJwt, "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP Error! status:${response.status}`);
+    }
+
+    const queryResult = await response.json();
+    console.log(queryResult);
+    return queryResult;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   ApiLogin,
   ApiRegister,
@@ -157,4 +177,5 @@ export {
   decodeJWTPayload,
   loggedContactMessages,
   clearJwtLogOut,
+  allContacts
 };
