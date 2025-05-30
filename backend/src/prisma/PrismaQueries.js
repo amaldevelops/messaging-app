@@ -67,35 +67,9 @@ async function allContacts() {
     return "Error Fetching Contacts";
   }
 }
-// Function to get all logged in contacts sent and received messages saved on database
-// async function contactMessages(contactID) {
-//   try {
-//     const userMessages = await prismaQuery.contact.findUnique({
-//       where: { id: contactID },
-//       include: {
-//         messagesSent: true,
-//         messagesReceived: true,
-//         password: false,
-//       },
-//     });
-//     console.log(contactID);
-//     console.log(userMessages);
-//     return userMessages;
-//   } catch (error) {
-//     console.error(error);
-//     return "error, Contact ID not valid";
-//   }
-// }
 
-
-// Assume prismaQuery is your initialized PrismaClient instance
-// import { PrismaClient } from '@prisma/client'; // or wherever your generated client is
-// const prismaQuery = new PrismaClient(); // if not already defined globally or passed
-
-// This is the correct way to return the data from your backend function
-// assuming it's consumed directly by your frontend's `loggedContactMessages` API call.
-
-async function contactMessages(contactID) { // This is your backend function
+async function contactMessages(contactID) {
+  // This is your backend function
   try {
     const contactData = await prismaQuery.contact.findUnique({
       where: { id: contactID },
@@ -127,8 +101,11 @@ async function contactMessages(contactID) { // This is your backend function
     ];
 
     const formattedMessages = allMessages.map((msg) => {
-      const senderName = msg.contactSender?.name || `Unknown Sender (${msg.contactIdSender})`;
-      const receiverName = msg.contactReceiver?.name || `Unknown Receiver (${msg.contactIdReceiver})`;
+      const senderName =
+        msg.contactSender?.name || `Unknown Sender (${msg.contactIdSender})`;
+      const receiverName =
+        msg.contactReceiver?.name ||
+        `Unknown Receiver (${msg.contactIdReceiver})`;
       const senderEmail = msg.contactSender?.email || null;
       const receiverEmail = msg.contactReceiver?.email || null;
 
@@ -145,24 +122,23 @@ async function contactMessages(contactID) { // This is your backend function
       };
     });
 
-    formattedMessages.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+    formattedMessages.sort(
+      (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
+    );
 
     console.log(`Messages fetched for contact ID: ${contactID}`);
-    // THIS IS THE KEY CHANGE: Ensure you're returning the correct structure.
-    // If your frontend's loggedContactMessages is simply `fetch('/api/messages')`
-    // and then `response.json()`, then this structure needs to be direct.
-    // If your backend route is structured like:
-    // app.get('/api/messages/:userId', async (req, res) => {
-    //    const messages = await contactMessages(req.params.userId);
-    //    res.json(messages); // <-- This res.json() will then send { response: [...], status: "..." }
-    // });
-    // This looks correct based on your previous logs.
 
-    return { response: formattedMessages, status: "Messages fetched successfully" };
-
+    return {
+      response: formattedMessages,
+      status: "Messages fetched successfully",
+    };
   } catch (error) {
     console.error("Error fetching contact messages:", error);
-    return { response: [], error: "Failed to fetch contact messages", details: error.message };
+    return {
+      response: [],
+      error: "Failed to fetch contact messages",
+      details: error.message,
+    };
   }
 }
 
