@@ -192,11 +192,33 @@ async function sendMessage(senderID, receiverID, message) {
   }
 }
 
+async function editProfile(contactID, updatedBio) {
+  try {
+    const storedJwt = await loadJwtTokenToHttpHeader();
+    let response = await fetch(
+      `${apiURL}/messaging-api/v1/contacts/${contactID}/profile`,
+      {
+        method: "PUT",
+        headers: { ...storedJwt, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contactID: contactID,
+          updatedBio: updatedBio,
+        }),
+      }
+    );
+    const ApiResponse = await response.json();
+    console.log(ApiResponse);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   ApiLogin,
   ApiRegister,
   loadJwtTokenToHttpHeader,
   loadProfile,
+  editProfile,
   decodeJWTPayload,
   loggedContactMessages,
   clearJwtLogOut,
