@@ -84,9 +84,13 @@ function Profile() {
     try {
       // Call editProfile with the necessary data
       // Assuming editProfile expects contactID (which is userProfile.id) and the updatedBio
-      const response = await editProfile(userProfile.id, formInput.bio);
+      const formData={
+        contactID: userProfile.id,
+          updatedBio: formInput.bio,
+      }
+      const response = await editProfile(formData);
 
-      if (response && response.status === "Success") {
+      if (response && response.status === "User Profile Updated") {
         // Update the displayed profile immediately on success
         setUserProfile(prev => ({ ...prev, bio: formInput.bio }));
         setUpdateSuccess(true);
