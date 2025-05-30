@@ -1,35 +1,33 @@
-import JWTStatus from "./JwtStatus";
-import { allContacts } from "../ApiQueries.js"; // Combined imports
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import JWTStatus from "./JwtStatus";
+import { allContacts } from "../ApiQueries.js";
 
 function Contacts() {
-  // 1. Initialize allContactsState as an EMPTY ARRAY
   const [allContactsState, setAllContactsState] = useState([]);
-  const [statusMessage, setStatusMessage] = useState(""); // Optional: to store the "status" from API
+  const [statusMessage, setStatusMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const fetchContactsData = async () => {
       try {
-        setLoading(true); // Ensure loading is true at the start of fetch
+        setLoading(true);
+        const loadedContactInfo = await allContacts();
 
-        const loadedContactInfo = await allContacts(); // This should return the full API response object
-
-        // Check if the response and the nested 'response' array exist
         if (
           loadedContactInfo &&
           loadedContactInfo.response &&
           Array.isArray(loadedContactInfo.response)
         ) {
-          setAllContactsState(loadedContactInfo.response); // Set the array of contacts
+          setAllContactsState(loadedContactInfo.response);
           if (loadedContactInfo.status) {
-            setStatusMessage(loadedContactInfo.status); // Optionally set the status message
+            setStatusMessage(loadedContactInfo.status);
           }
         } else if (Array.isArray(loadedContactInfo)) {
-          // Fallback if allContacts() directly returns the array
           setAllContactsState(loadedContactInfo);
-          setStatusMessage("Contacts loaded"); // Generic status
+          setStatusMessage("Contacts loaded");
         } else {
           console.error(
             "API response is not in the expected format:",
@@ -46,10 +44,7 @@ function Contacts() {
     };
 
     fetchContactsData();
-  }, []); // Empty dependency array means this runs once on mount
-
-  // This log will now show the array of contacts or an empty array
-  console.log("Loaded Contacts from STATE:", allContactsState);
+  }, []);
 
   if (loading) {
     return <div>Loading Contacts...</div>;
@@ -59,10 +54,17 @@ function Contacts() {
     return <div>Error: {error}</div>;
   }
 
+  // --- NEW: handleMessageClick function ---
+  const handleMessageClick = (contact) => {
+    navigate("/messaging-app/messages", {
+      state: { selectedContact: contact },
+    });
+  };
+  // --- End of new function ---
+
   return (
     <div>
       <JWTStatus />
-      {/* Optionally display the status message from API */}
       {statusMessage && <h1>{statusMessage}</h1>}
       {!statusMessage && <h1>Contacts</h1>}
 
@@ -71,26 +73,28 @@ function Contacts() {
           <ul>
             {allContactsState.map((contact) => (
               <li key={contact.id}>
-                   <p className="p-format">
+                <p className="p-format">
                   <strong>ID : </strong> {contact.id}
                 </p>
                 <p className="p-format">
                   <strong>Name : </strong>
                   {contact.name}
                 </p>
-             
+
                 <p className="p-format">
                   <strong>Email:</strong> {contact.email}
                 </p>
                 <p className="p-format">
                   <strong>Bio:</strong> {contact.bio}
                 </p>
-                <button>Message</button>
+                {/* --- Call handleMessageClick on button click --- */}
+                <button onClick={() => handleMessageClick(contact)}>
+                  Message
+                </button>
               </li>
             ))}
           </ul>
         ) : (
-          // This will show if the array is empty after loading (e.g., API returned no contacts)
           <p>No contacts found.</p>
         )}
       </div>

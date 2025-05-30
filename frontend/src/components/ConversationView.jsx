@@ -28,9 +28,7 @@ function ConversationView({ userID, selectedContact, allMessages, onBack, onSend
     );
 
     // Sort filtered messages by time to ensure correct display order and grouping logic
-    // Although you mentioned backend sorting, re-sorting here is a good safety measure
-    // especially if you're adding new messages client-side.
-    const sortedFilteredMessages = filtered.sort((a, b) => {
+        const sortedFilteredMessages = filtered.sort((a, b) => {
       return new Date(a.time).getTime() - new Date(b.time).getTime();
     });
 
