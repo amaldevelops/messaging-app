@@ -192,17 +192,17 @@ async function sendMessage(senderID, receiverID, message) {
   }
 }
 
-async function editProfile(contactID, updatedBio) {
+async function editProfile(formData) {
   try {
     const storedJwt = await loadJwtTokenToHttpHeader();
     let response = await fetch(
-      `${apiURL}/messaging-api/v1/contacts/${contactID}/profile`,
+      `${apiURL}/messaging-api/v1/contacts/${formData.contactID}/profile`,
       {
         method: "PUT",
         headers: { ...storedJwt, "Content-Type": "application/json" },
         body: JSON.stringify({
-          contactID: contactID,
-          updatedBio: updatedBio,
+          contactID: formData.contactID,
+          updatedBio: formData.updatedBio,
         }),
       }
     );
