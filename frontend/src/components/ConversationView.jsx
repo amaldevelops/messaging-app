@@ -1,6 +1,4 @@
-// src/components/ConversationView.js
 import React, { useEffect, useState, useRef } from "react";
-// import './ConversationView.css';
 
 import { sendMessage } from "../ApiQueries.js"; // Assuming this is your API call
 

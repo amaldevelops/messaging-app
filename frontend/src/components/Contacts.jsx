@@ -54,13 +54,11 @@ function Contacts() {
     return <div>Error: {error}</div>;
   }
 
-  // --- NEW: handleMessageClick function ---
   const handleMessageClick = (contact) => {
     navigate("/messaging-app/messages", {
       state: { selectedContact: contact },
     });
   };
-  // --- End of new function ---
 
   return (
     <div>
@@ -87,7 +85,6 @@ function Contacts() {
                 <p className="p-format">
                   <strong>Bio:</strong> {contact.bio}
                 </p>
-                {/* --- Call handleMessageClick on button click --- */}
                 <button onClick={() => handleMessageClick(contact)}>
                   Message
                 </button>

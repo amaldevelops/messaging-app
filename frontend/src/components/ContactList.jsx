@@ -1,6 +1,5 @@
 // src/components/ContactList.js
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from "react";
 
 function ContactList({ userID, allMessages, onSelectContact }) {
   const [contacts, setContacts] = useState([]);
@@ -13,7 +12,7 @@ function ContactList({ userID, allMessages, onSelectContact }) {
 
     const uniqueContactsMap = new Map(); // Use a Map to store unique contacts by their ID
 
-    allMessages.forEach(msg => {
+    allMessages.forEach((msg) => {
       let otherContactId = null;
       let otherContactName = null;
       let otherContactEmail = null; // Assuming email might be useful for contact info
@@ -43,20 +42,28 @@ function ContactList({ userID, allMessages, onSelectContact }) {
             lastMessageContent: msg.message, // Store last message for preview
           });
         } else {
-            // Update last message if the current message is newer
-            const existingContact = uniqueContactsMap.get(otherContactId);
-            if (new Date(msg.time).getTime() > new Date(existingContact.lastMessageTime).getTime()) {
-                existingContact.lastMessageTime = msg.time;
-                existingContact.lastMessageContent = msg.message;
-            }
+          // Update last message if the current message is newer
+          const existingContact = uniqueContactsMap.get(otherContactId);
+          if (
+            new Date(msg.time).getTime() >
+            new Date(existingContact.lastMessageTime).getTime()
+          ) {
+            existingContact.lastMessageTime = msg.time;
+            existingContact.lastMessageContent = msg.message;
+          }
         }
       }
     });
 
     // Convert map values to array and sort by last message time (most recent conversations first)
-    const sortedContacts = Array.from(uniqueContactsMap.values()).sort((a, b) => {
-        return new Date(b.lastMessageTime).getTime() - new Date(a.lastMessageTime).getTime();
-    });
+    const sortedContacts = Array.from(uniqueContactsMap.values()).sort(
+      (a, b) => {
+        return (
+          new Date(b.lastMessageTime).getTime() -
+          new Date(a.lastMessageTime).getTime()
+        );
+      }
+    );
 
     setContacts(sortedContacts);
   }, [userID, allMessages]); // Re-run this effect if userID or allMessages change
@@ -67,16 +74,25 @@ function ContactList({ userID, allMessages, onSelectContact }) {
       {contacts.length > 0 ? (
         <ul>
           {contacts.map((contact) => (
-            <li key={contact.id} onClick={() => onSelectContact(contact)} className="contact-list-item">
+            <li
+              key={contact.id}
+              onClick={() => onSelectContact(contact)}
+              className="contact-list-item"
+            >
               <div className="contact-info">
                 <strong>{contact.name}</strong>
                 {/* Display last message preview */}
-                <span className="last-message-preview">{contact.lastMessageContent}</span>
+                <span className="last-message-preview">
+                  {contact.lastMessageContent}
+                </span>
               </div>
               {/* Display last message time, formatted for local time */}
               <span className="last-message-time">
                 {contact.lastMessageTime &&
-                 new Date(contact.lastMessageTime).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit', hour12: true })}
+                  new Date(contact.lastMessageTime).toLocaleTimeString(
+                    "en-AU",
+                    { hour: "numeric", minute: "2-digit", hour12: true }
+                  )}
               </span>
             </li>
           ))}
