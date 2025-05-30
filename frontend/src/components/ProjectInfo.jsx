@@ -21,33 +21,33 @@ function ProjectInfo() {
       <h4>Front End : User interface Design</h4>
 
       <ul>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           User interface Design: Decide on number of UI elements and React
           components required
         </li>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Login Screen: User Name Input, Password Input, Login button which will
           submit entered data, New User Registration Link, Demo User Login
           Button
         </li>
 
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Security: Validate Password and User name with predefined criteria and
           provide user feed back accordingly
         </li>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Register screen: Full Name Input, E-Mail Input, Password Input, Retype
           Password input, Signup button which will submit entered data, link for
           users who have a account already
         </li>
 
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Logged in users screen: Users previously Contacted list which when
           clicked will take to messaging screen, At the top search bar to search
           other users by e-mail and then button to add them to own contact list
         </li>
 
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           User Profile: Edit job title, edit bio
         </li>
       </ul>
@@ -86,12 +86,12 @@ function ProjectInfo() {
       <h4>Cloud Infrastructure and Deployment</h4>
 
       <ul>
-        <li className="pendingEmptyCheckbox">
+        <li className="completedTick">
           Render for Backend code hosting
         </li>
-        <li className="pendingEmptyCheckbox">Neon for Database hosting</li>
+        <li className="completedTick">Neon for Database hosting</li>
 
-        <li className="pendingEmptyCheckbox">Github Pages for FrontEnd</li>
+        <li className="completedTick">Github Pages for FrontEnd</li>
       </ul>
     </div>
   );
