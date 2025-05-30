@@ -104,16 +104,16 @@ async function getContactMessages(req, res, next) {
 
 async function sendMessageToContact(req, res, next) {
   try {
-    // const senderID = parseInt(req.params.loggedInUserID);
-    // const receiverID = parseInt(req.params.contactID);
+    const senderID = parseInt(req.params.loggedInUserID);
+    const receiverID = parseInt(req.params.contactID);
 
-    const { message, loggedInUserID, contactID } = req.body;
+    console.log();
 
-    const response = await sendNewMessage(
-      parseInt(loggedInUserID),
-      parseInt(contactID),
-      message
-    );
+    // const { message, loggedInUserID, contactID } = req.body;
+
+    const { message } = req.body;
+
+    const response = await sendNewMessage(senderID, receiverID, message);
     res.json({
       response: response,
     });
