@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import JWTStatus from "./JwtStatus";
 import { loggedContactMessages, decodeJWTPayload } from "../ApiQueries.js";
+import { Link, useNavigate } from "react-router-dom";
+
 
 import ContactList from "./ContactList";
 import ConversationView from "./ConversationView";
@@ -128,6 +130,7 @@ function UserMessages() {
           onSelectContact={handleSelectContact}
         />
       )}
+
     </div>
   );
 }

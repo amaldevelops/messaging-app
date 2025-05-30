@@ -7,6 +7,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import UserMessages from "./components/UserMessages";
 import Contacts from "./components/Contacts";
+import ContactList from "./components/ContactList";
+import ConversationView from "./components/ConversationView";
 
 const routes = [
   {
@@ -45,6 +47,16 @@ const routes = [
       {
         path: "/messaging-app/messages",
         element: <UserMessages />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/messaging-app/messageview",
+        element: <ConversationView />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/messaging-app/contactlist",
+        element: <ContactList />,
         errorElement: <ErrorPage />,
       },
     ],

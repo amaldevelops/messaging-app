@@ -2,11 +2,14 @@
 import React, { useEffect, useState, useRef } from "react";
 // import './ConversationView.css';
 
+import { sendMessage } from "../ApiQueries.js"; // Assuming this is your API call
+
 // Helper constant for grouping time threshold
 const MESSAGE_GROUP_TIME_THRESHOLD_MINUTES = 5;
 
-function ConversationView({ userID, selectedContact, allMessages, onBack }) {
+function ConversationView({ userID, selectedContact, allMessages, onBack, onSendMessageSuccess }) { // <-- Added onSendMessageSuccess prop
   const [conversationMessages, setConversationMessages] = useState([]);
+  const [currentMessageText, setCurrentMessageText] = useState(""); // <-- New state for input text
   const messagesEndRef = useRef(null); // Ref for auto-scrolling to the latest message
 
   useEffect(() => {
@@ -24,8 +27,14 @@ function ConversationView({ userID, selectedContact, allMessages, onBack }) {
           msg.contactIdReceiver === userID)
     );
 
-    // Messages are already sorted by time from the parent UserMessages component due to backend sorting
-    setConversationMessages(filtered);
+    // Sort filtered messages by time to ensure correct display order and grouping logic
+    // Although you mentioned backend sorting, re-sorting here is a good safety measure
+    // especially if you're adding new messages client-side.
+    const sortedFilteredMessages = filtered.sort((a, b) => {
+      return new Date(a.time).getTime() - new Date(b.time).getTime();
+    });
+
+    setConversationMessages(sortedFilteredMessages);
 
     // Scroll to the bottom of the message list whenever conversation messages update
     if (messagesEndRef.current) {
@@ -75,6 +84,42 @@ function ConversationView({ userID, selectedContact, allMessages, onBack }) {
     // Show a separator if the date changes
     return currentDate.getTime() !== prevDate.getTime();
   };
+
+
+  const handleSendMessage = async () => {
+    if (!currentMessageText.trim()) { // Don't send empty messages
+      return;
+    }
+
+    try {
+      // Call the API function
+      // Assuming sendMessage returns the new message object from the backend
+      const newMessageResponse = await sendMessage(
+        userID,
+        selectedContact.id, // <-- Correctly passing the ID
+        currentMessageText
+      );
+
+      console.log(currentMessageText)
+
+      // IMPORTANT: After sending, you need to update the `allMessages` state
+      // in the parent `UserMessages` component so that this ConversationView
+      // re-renders with the new message and the ContactList also gets updated.
+      // We pass a callback prop `onSendMessageSuccess` for this.
+      if (onSendMessageSuccess && newMessageResponse) {
+          // Assuming newMessageResponse.response is the actual new message object
+          // or newMessageResponse itself is the message object if your API is clean.
+          // Adjust based on what your `sendMessage` function actually returns.
+          onSendMessageSuccess(newMessageResponse.response || newMessageResponse);
+      }
+
+      setCurrentMessageText(""); // Clear the input field after sending
+    } catch (error) {
+      console.error("Error sending message:", error);
+      // You might want to show an error message to the user here
+    }
+  };
+
 
   // Safety check, though the parent should ensure selectedContact is not null when rendering this
   if (!selectedContact) {
@@ -162,10 +207,21 @@ function ConversationView({ userID, selectedContact, allMessages, onBack }) {
         </ul>
       </div>
 
-      {/* Message Input Area (placeholder) */}
+      {/* Message Input Area */}
       <div className="message-input-area">
-        <input type="text" placeholder="Type a message..." />
-        <button>Send</button>
+        <input
+          type="text"
+          placeholder="Type a message..."
+          value={currentMessageText} // <-- Bind value to state
+          onChange={(e) => setCurrentMessageText(e.target.value)} // <-- Update state on change
+          onKeyPress={(e) => { // Optional: Send message on Enter key press
+            if (e.key === 'Enter') {
+              handleSendMessage();
+            }
+          }}
+        />
+        <button onClick={handleSendMessage}>Send</button>{" "}
+        {/* <-- Call the new handler */}
       </div>
     </div>
   );

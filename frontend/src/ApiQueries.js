@@ -169,6 +169,29 @@ async function allContacts() {
   }
 }
 
+async function sendMessage(senderID, receiverID, message) {
+  try {
+    const storedJwt = await loadJwtTokenToHttpHeader();
+
+    let response = await fetch(
+      `${apiURL}/messaging-api/v1/contacts/${senderID}/message/${receiverID}`,
+      {
+        method: "POST",
+        headers: { ...storedJwt, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: message,
+          contactIdSender: senderID,
+          contactIdReceiver: receiverID,
+        }),
+      }
+    );
+    const ApiResponse = await response.json();
+    console.log(ApiResponse);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   ApiLogin,
   ApiRegister,
@@ -178,4 +201,5 @@ export {
   loggedContactMessages,
   clearJwtLogOut,
   allContacts,
+  sendMessage,
 };
