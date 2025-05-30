@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { ApiLogin } from "../ApiQueries.js";
+import { ApiLogin } from "../ApiQueries.js"; // Assuming ApiLogin is an async function
 
 function Login() {
   const Navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    // Make the function asynchronous
     event.preventDefault();
-    Navigate("/messaging-app/messages");
-    ApiLogin(formData);
+    await ApiLogin(formData); // Await the API login call to complete
+
+    // Add a 2-second delay before navigating
+    setTimeout(() => {
+      Navigate("/messaging-app/messages");
+    }, 2000); // 2000 milliseconds = 2 seconds
   };
 
   return (
@@ -31,8 +36,8 @@ function Login() {
               [event.target.name]: event.target.value,
             });
           }}
-          autoComplete="username" // Recommended for email fields to help password managers
-          required // Make email input required
+          autoComplete="username"
+          required
         ></input>
         <br />
         <label htmlFor="password">Password:</label>
@@ -48,8 +53,8 @@ function Login() {
               [event.target.name]: event.target.value,
             });
           }}
-          autoComplete="current-password" // CRITICAL for security and password managers
-          required // Make password input required
+          autoComplete="current-password"
+          required
         ></input>
         <br />
         <div className="form-button-container">

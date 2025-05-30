@@ -195,7 +195,7 @@ async function sendMessage(senderID, receiverID, message) {
 async function editProfile(formData) {
   try {
     const storedJwt = await loadJwtTokenToHttpHeader();
-    console.log("Formsubmitted data",formData)
+    console.log("Formsubmitted data", formData);
     let response = await fetch(
       `${apiURL}/messaging-api/v1/contacts/${formData.contactID}/profile`,
       {
