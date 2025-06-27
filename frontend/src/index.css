@@ -15,6 +15,10 @@
   /* --- Responsive Base Font Size --- */
   /* This makes 1rem scale with the viewport for better typography on different screens */
   font-size: 16px; /* Base font size for larger screens */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* --- Media Query for Smaller Base Font Size on Small Screens --- */
@@ -112,7 +116,7 @@ button:focus-visible {
 /* --- Menu Bar --- */
 .menuBar {
   display: flex;
-  gap: 20px;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -123,21 +127,25 @@ button:focus-visible {
   background: #f4f4f4;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-bottom: solid #d4cccc 2px;
-  padding: 0.5rem 1rem;
+  /* padding: 0.5rem 1rem; */
   box-sizing: border-box;
-
-  /* --- Responsive Menu Bar Layout --- */
-  @media (max-width: 768px) {
+}
+/* --- Responsive Menu Bar Layout --- */
+@media (max-width: 768px) {
+  .menuBar {
     flex-wrap: wrap;
     gap: 10px;
     padding: 0.5rem 0.5rem;
     justify-content: space-around;
   }
-  @media (max-width: 480px) {
+}
+@media (max-width: 480px) {
+  .media {
     flex-direction: column; /* Stacks items vertically, increasing height */
     gap: 5px;
     padding: 0.5rem;
     height: auto; /* Allow height to adjust */
+    position: static;
   }
 }
 
